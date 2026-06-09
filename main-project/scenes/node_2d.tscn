@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cd1qc6lj5jfb7"]
+
+[sub_resource type="Environment" id="Environment_rf3rd"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 6.0
+glow_strength = 0.74
+glow_blend_mode = 2
+glow_hdr_threshold = 0.2
+glow_map_strength = 0.45
+
+[node name="Node2D" type="Node2D" unique_id=1521934313]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=163730102]
+offset_right = 3785.0
+offset_bottom = 3195.0
+color = Color(0.1648978, 0.06899676, 0.29223028, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=63757592]
+environment = SubResource("Environment_rf3rd")

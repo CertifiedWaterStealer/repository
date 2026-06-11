@@ -15,3 +15,7 @@ func _process(delta):
 func _resume() -> void:
 	get_tree().paused = not get_tree().paused
 	$pause_menu.visible = not $pause_menu.visible
+
+func _quit() -> void:
+	get_tree().paused = false
+	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

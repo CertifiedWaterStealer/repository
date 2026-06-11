@@ -432,3 +432,4 @@ process_mode = 1
 position = Vector2(656, 3100)
 
 [connection signal="pressed" from="pause_menu/VBoxContainer/Button" to="." method="_resume"]
+[connection signal="pressed" from="pause_menu/VBoxContainer/Button2" to="." method="_quit"]

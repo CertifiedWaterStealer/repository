@@ -407,12 +407,20 @@ shape = SubResource("RectangleShape2D_gkh53")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=63757592]
 environment = SubResource("Environment_rf3rd")
 
-[node name="pause_menu" type="Node2D" parent="." unique_id=36918848]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=5716347]
 visible = false
-position = Vector2(1264, 3100)
-scale = Vector2(19.109867, 16.327505)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="pause_menu" unique_id=666908572]
+[node name="pause_menu" type="Control" parent="CanvasLayer" unique_id=346203053]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 560.0
+offset_top = 391.00003
+offset_right = 560.0
+offset_bottom = 391.00003
+scale = Vector2(10.896902, 10.594289)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/pause_menu" unique_id=666908572]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -428,11 +436,11 @@ scale = Vector2(0.8937102, 0.83636457)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="Button" type="Button" parent="pause_menu/VBoxContainer" unique_id=1381723244]
+[node name="Button" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=1381723244]
 layout_mode = 2
 text = "Resume"
 
-[node name="Button2" type="Button" parent="pause_menu/VBoxContainer" unique_id=1861715460]
+[node name="Button2" type="Button" parent="CanvasLayer/pause_menu/VBoxContainer" unique_id=1861715460]
 layout_mode = 2
 text = "Quit"
 
@@ -459,5 +467,5 @@ position = Vector2(3789, 1597.5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_5xbjy")
 
-[connection signal="pressed" from="pause_menu/VBoxContainer/Button" to="." method="_resume"]
-[connection signal="pressed" from="pause_menu/VBoxContainer/Button2" to="." method="_quit"]
+[connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Button" to="." method="_resume"]
+[connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Button2" to="." method="_quit"]

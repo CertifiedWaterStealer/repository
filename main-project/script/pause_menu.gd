@@ -10,11 +10,11 @@ func _ready() -> void:
 func _process(delta):
 	if Input.is_action_just_pressed("esc"):
 		get_tree().paused = not get_tree().paused
-		$pause_menu.visible = not $pause_menu.visible
+		$CanvasLayer.visible = not $CanvasLayer.visible
 
 func _resume() -> void:
 	get_tree().paused = not get_tree().paused
-	$pause_menu.visible = not $pause_menu.visible
+	$CanvasLayer.visible = not $CanvasLayer.visible
 
 func _quit() -> void:
 	get_tree().paused = false

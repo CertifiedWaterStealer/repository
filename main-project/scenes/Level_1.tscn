@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://cd1qc6lj5jfb7"]
 
+[ext_resource type="PackedScene" uid="uid://dilf4hpvg5ff8" path="res://scenes/player.tscn" id="1_014kd"]
+[ext_resource type="Script" uid="uid://chjm4jrkkfp8l" path="res://script/pause_menu.gd" id="1_bswci"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xav4b"]
 size = Vector2(216, 123)
 
@@ -36,16 +39,21 @@ size = Vector2(1532, 57)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crfhr"]
 size = Vector2(24, 476)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gkh53"]
+size = Vector2(502, 27)
+
 [sub_resource type="Environment" id="Environment_rf3rd"]
 background_mode = 3
 glow_enabled = true
 glow_intensity = 6.0
-glow_strength = 1.14
+glow_strength = 0.98
 glow_blend_mode = 2
 glow_hdr_threshold = 0.2
 glow_map_strength = 0.45
 
 [node name="Node2D" type="Node2D" unique_id=1521934313]
+process_mode = 3
+script = ExtResource("1_bswci")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=163730102]
 offset_left = -135.0
@@ -53,6 +61,7 @@ offset_top = 85.0
 offset_right = 3650.0
 offset_bottom = 3280.0
 color = Color(0.1648978, 0.06899676, 0.29223028, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="ColorRect" unique_id=1869554923]
 layout_mode = 0
@@ -61,6 +70,7 @@ offset_top = 3072.0
 offset_right = 3785.0
 offset_bottom = 3195.0
 color = Color(0.9504332, 0.829327, 0.42014715, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect" unique_id=1724421852]
 
@@ -75,6 +85,7 @@ offset_top = 3072.0
 offset_right = 3335.0
 offset_bottom = 3195.0
 color = Color(0.9504332, 0.829327, 0.42014715, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect2" unique_id=842114608]
 
@@ -89,6 +100,7 @@ offset_top = 2688.0
 offset_right = 3328.0
 offset_bottom = 2816.0
 color = Color(0.9504332, 0.829327, 0.42014715, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect3" unique_id=1870349160]
 
@@ -103,6 +115,7 @@ offset_top = 2624.0
 offset_right = 2944.0
 offset_bottom = 2752.0
 color = Color(0.9504332, 0.829327, 0.42014715, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect4" unique_id=428178926]
 
@@ -117,6 +130,7 @@ offset_top = 2664.0
 offset_right = 2264.0
 offset_bottom = 2792.0
 color = Color(0.9504332, 0.829327, 0.42014715, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect5" unique_id=1151905666]
 
@@ -131,6 +145,7 @@ offset_top = 2360.0
 offset_right = 1920.0
 offset_bottom = 2488.0
 color = Color(0.9504332, 0.829327, 0.42014715, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect6" unique_id=1580506119]
 
@@ -145,6 +160,7 @@ offset_top = 2488.0
 offset_right = 1656.0
 offset_bottom = 2816.0
 color = Color(0.9504332, 0.829327, 0.42014715, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect7" unique_id=1531511482]
 
@@ -158,6 +174,7 @@ offset_top = 3168.0
 offset_right = 3119.0
 offset_bottom = 3195.0
 color = Color(0.9504332, 0.829327, 0.42014715, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect8" unique_id=437894471]
 
@@ -172,6 +189,7 @@ offset_top = 3168.0
 offset_right = 3569.0
 offset_bottom = 3195.0
 color = Color(0.9504332, 0.829327, 0.42014715, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect9" unique_id=767711185]
 
@@ -186,6 +204,7 @@ offset_top = 2816.0
 offset_right = 1656.0
 offset_bottom = 3168.0
 color = Color(0.72926044, 0.63253874, 0.31211957, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect11" type="ColorRect" parent="ColorRect" unique_id=341885460]
 layout_mode = 0
@@ -194,6 +213,7 @@ offset_top = 2792.0
 offset_right = 2264.0
 offset_bottom = 3168.0
 color = Color(0.72926044, 0.63253874, 0.31211957, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect12" type="ColorRect" parent="ColorRect" unique_id=1869696279]
 layout_mode = 0
@@ -202,6 +222,7 @@ offset_top = 2624.0
 offset_right = 3120.0
 offset_bottom = 2752.0
 color = Color(0.72926044, 0.63253874, 0.31211957, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect13" type="ColorRect" parent="ColorRect" unique_id=1599335329]
 layout_mode = 0
@@ -210,6 +231,7 @@ offset_top = 2816.0
 offset_right = 3216.0
 offset_bottom = 3072.0
 color = Color(0.72926044, 0.63253874, 0.31211957, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect14" type="ColorRect" parent="ColorRect" unique_id=1107618852]
 layout_mode = 0
@@ -218,6 +240,7 @@ offset_top = 2560.0
 offset_right = 3328.0
 offset_bottom = 2688.0
 color = Color(0.72926044, 0.63253874, 0.31211957, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect15" type="ColorRect" parent="ColorRect" unique_id=1196058186]
 layout_mode = 0
@@ -227,6 +250,7 @@ offset_right = 3532.6719
 offset_bottom = 2615.355
 rotation = 0.2617994
 color = Color(0.16470589, 0.07058824, 0.2901961, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect16" type="ColorRect" parent="ColorRect" unique_id=1103969396]
 layout_mode = 0
@@ -235,6 +259,7 @@ offset_top = 2496.0
 offset_right = 3150.37
 offset_bottom = 2624.0
 color = Color(0.16470589, 0.07058824, 0.2901961, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect17" type="ColorRect" parent="ColorRect" unique_id=404847332]
 layout_mode = 0
@@ -243,6 +268,7 @@ offset_top = 2752.0
 offset_right = 3120.0
 offset_bottom = 2952.0
 color = Color(0.72926044, 0.63253874, 0.31211957, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect18" type="ColorRect" parent="ColorRect" unique_id=245713951]
 layout_mode = 0
@@ -252,6 +278,7 @@ offset_right = 3185.916
 offset_bottom = 2899.0781
 rotation = 0.7853982
 color = Color(0.16470589, 0.07058824, 0.2901961, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect19" type="ColorRect" parent="ColorRect" unique_id=1503438819]
 layout_mode = 0
@@ -261,6 +288,7 @@ offset_right = 3345.0454
 offset_bottom = 3058.3816
 rotation = 1.5707964
 color = Color(0.16470589, 0.07058824, 0.2901961, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect20" type="ColorRect" parent="ColorRect" unique_id=1025046902]
 layout_mode = 0
@@ -269,6 +297,7 @@ offset_top = 2752.0
 offset_right = 2760.0
 offset_bottom = 3168.0
 color = Color(0.72926044, 0.63253874, 0.31211957, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect21" type="ColorRect" parent="ColorRect" unique_id=2026842211]
 layout_mode = 0
@@ -276,6 +305,7 @@ offset_top = 2276.0
 offset_right = 24.0
 offset_bottom = 3168.0
 color = Color(0.972549, 0.9098039, 0.49019608, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect21" unique_id=1191453411]
 
@@ -289,6 +319,7 @@ offset_top = 2219.0
 offset_right = 1532.0
 offset_bottom = 2276.0
 color = Color(0.972549, 0.9098039, 0.49019608, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect22" unique_id=1605427962]
 
@@ -303,6 +334,7 @@ offset_top = 2276.0
 offset_right = 1532.0
 offset_bottom = 2752.0
 color = Color(0.972549, 0.9098039, 0.49019608, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect23" unique_id=425598298]
 
@@ -317,6 +349,7 @@ offset_top = 2752.0
 offset_right = 1532.0
 offset_bottom = 3168.0
 color = Color(0.72926044, 0.63253874, 0.31211957, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect25" type="ColorRect" parent="ColorRect" unique_id=1575948900]
 layout_mode = 0
@@ -325,6 +358,7 @@ offset_top = 2276.0
 offset_right = 1508.0
 offset_bottom = 2376.0
 color = Color(0.9490196, 0.827451, 0.41960785, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect26" type="ColorRect" parent="ColorRect" unique_id=2050777104]
 layout_mode = 0
@@ -334,6 +368,7 @@ offset_right = 1516.9412
 offset_bottom = 2430.0
 rotation = 0.2617994
 color = Color(0.16470589, 0.07058824, 0.2901961, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect27" type="ColorRect" parent="ColorRect" unique_id=103925992]
 layout_mode = 0
@@ -343,6 +378,7 @@ offset_right = 1767.9412
 offset_bottom = 2498.0
 rotation = 1.5707964
 color = Color(0.16470589, 0.07058824, 0.2901961, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect28" type="ColorRect" parent="ColorRect" unique_id=331911685]
 layout_mode = 0
@@ -351,6 +387,45 @@ offset_top = 2192.0
 offset_right = 750.0
 offset_bottom = 2219.0
 color = Color(0.9490196, 0.827451, 0.41960785, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ColorRect/ColorRect28" unique_id=501101836]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ColorRect/ColorRect28/StaticBody2D" unique_id=1845026063]
+position = Vector2(251, 13.5)
+shape = SubResource("RectangleShape2D_gkh53")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=63757592]
 environment = SubResource("Environment_rf3rd")
+
+[node name="pause_menu" type="Node2D" parent="." unique_id=36918848]
+position = Vector2(1785, 2737)
+scale = Vector2(19.109867, 16.327505)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pause_menu" unique_id=666908572]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.8937102, 0.83636457)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="pause_menu/VBoxContainer" unique_id=1381723244]
+layout_mode = 2
+text = "Resume"
+
+[node name="Button2" type="Button" parent="pause_menu/VBoxContainer" unique_id=1861715460]
+layout_mode = 2
+text = "Quit"
+
+[node name="CharacterBody2D" parent="." unique_id=188757502 instance=ExtResource("1_014kd")]
+process_mode = 1
+position = Vector2(656, 3100)

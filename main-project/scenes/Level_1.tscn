@@ -51,6 +51,15 @@ glow_blend_mode = 2
 glow_hdr_threshold = 0.2
 glow_map_strength = 0.45
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bswci"]
+size = Vector2(3785, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rus8k"]
+size = Vector2(3195, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xbjy"]
+size = Vector2(3195, 8)
+
 [node name="Node2D" type="Node2D" unique_id=1521934313]
 process_mode = 3
 script = ExtResource("1_bswci")
@@ -230,7 +239,7 @@ offset_left = 3120.0
 offset_top = 2816.0
 offset_right = 3216.0
 offset_bottom = 3072.0
-color = Color(0.72926044, 0.63253874, 0.31211957, 1)
+color = Color(0.73333335, 0.6313726, 0.3137255, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect14" type="ColorRect" parent="ColorRect" unique_id=1107618852]
@@ -267,7 +276,7 @@ offset_left = 2960.0
 offset_top = 2752.0
 offset_right = 3120.0
 offset_bottom = 2952.0
-color = Color(0.72926044, 0.63253874, 0.31211957, 1)
+color = Color(0.73333335, 0.6313726, 0.3137255, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect18" type="ColorRect" parent="ColorRect" unique_id=245713951]
@@ -296,7 +305,7 @@ offset_left = 2736.0
 offset_top = 2752.0
 offset_right = 2760.0
 offset_bottom = 3168.0
-color = Color(0.72926044, 0.63253874, 0.31211957, 1)
+color = Color(0.73333335, 0.6313726, 0.3137255, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect21" type="ColorRect" parent="ColorRect" unique_id=2026842211]
@@ -430,6 +439,25 @@ text = "Quit"
 [node name="CharacterBody2D" parent="." unique_id=188757502 instance=ExtResource("1_014kd")]
 process_mode = 1
 position = Vector2(656, 3100)
+
+[node name="Node2D" type="Node2D" parent="." unique_id=416293788]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Node2D" unique_id=653354427]
+position = Vector2(-135, 85)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/StaticBody2D" unique_id=1009443728]
+position = Vector2(1892.5, -4)
+shape = SubResource("RectangleShape2D_bswci")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Node2D/StaticBody2D" unique_id=1720767452]
+position = Vector2(-3.9999542, 1597.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_rus8k")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/StaticBody2D" unique_id=566034572]
+position = Vector2(3789, 1597.5)
+rotation = 1.5707964
+shape = SubResource("RectangleShape2D_5xbjy")
 
 [connection signal="pressed" from="pause_menu/VBoxContainer/Button" to="." method="_resume"]
 [connection signal="pressed" from="pause_menu/VBoxContainer/Button2" to="." method="_quit"]

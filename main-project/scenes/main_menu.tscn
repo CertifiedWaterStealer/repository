@@ -16,6 +16,8 @@ font_color = Color(0, 0, 0, 1)
 outline_size = 5
 outline_color = Color(0.99927646, 0.79651004, 1, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l6cm7"]
+
 [node name="Control" type="Control" unique_id=1016408359]
 layout_mode = 3
 anchors_preset = 0
@@ -37,7 +39,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1983367565]
 layout_mode = 2
-text = "Theif's Delusion"
+text = "Thief's Delusion"
 label_settings = SubResource("LabelSettings_l6cm7")
 horizontal_alignment = 1
 
@@ -57,6 +59,7 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.893123, 0.40036058, 0.8613657, 1)
 theme_override_font_sizes/font_size = 90
+theme_override_styles/normal = SubResource("StyleBoxEmpty_l6cm7")
 text = "Play"
 flat = true
 

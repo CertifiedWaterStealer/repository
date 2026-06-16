@@ -413,11 +413,11 @@ visible = false
 [node name="pause_menu" type="Control" parent="CanvasLayer" unique_id=346203053]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 560.0
-offset_top = 391.00003
-offset_right = 560.0
-offset_bottom = 391.00003
-scale = Vector2(10.896902, 10.594289)
+offset_left = 1019.00006
+offset_top = 119.00003
+offset_right = 1019.00006
+offset_bottom = 119.00003
+scale = Vector2(4.050983, 3.1090891)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/pause_menu" unique_id=666908572]
 layout_mode = 1

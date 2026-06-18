@@ -33,7 +33,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
 	if Input.is_action_just_pressed("shift"):
-		speed = 1000.0
+		speed = 800.0
 	
 	if Input.is_action_just_released("shift"):
 		speed = 600.0

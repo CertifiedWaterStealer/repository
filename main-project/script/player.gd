@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 600.0
+var speed = 600.0
 const JUMP_VELOCITY = -650.0
 
 var double_jump: bool = true 
@@ -28,8 +28,14 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+	
+	if Input.is_action_just_pressed("shift"):
+		speed = 1000.0
+	
+	if Input.is_action_just_released("shift"):
+		speed = 600.0
 
 	move_and_slide()

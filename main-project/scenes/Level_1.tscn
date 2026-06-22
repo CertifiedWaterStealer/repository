@@ -60,6 +60,12 @@ size = Vector2(3195, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xbjy"]
 size = Vector2(3195, 8)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bswci"]
+bg_color = Color(0.9764706, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rus8k"]
+bg_color = Color(9.048581e-06, 0.9605697, 0.91356575, 1)
+
 [node name="Node2D" type="Node2D" unique_id=1521934313]
 process_mode = 3
 script = ExtResource("1_bswci")
@@ -444,9 +450,10 @@ text = "Resume"
 layout_mode = 2
 text = "Quit"
 
-[node name="CharacterBody2D" parent="." unique_id=188757502 instance=ExtResource("1_014kd")]
+[node name="CharacterBody2D" parent="." unique_id=188757502 node_paths=PackedStringArray("stamina_ui") instance=ExtResource("1_014kd")]
 process_mode = 1
 position = Vector2(656, 3100)
+stamina_ui = NodePath("../CanvasLayer2/ProgressBar")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=416293788]
 
@@ -466,6 +473,20 @@ shape = SubResource("RectangleShape2D_rus8k")
 position = Vector2(3789, 1597.5)
 rotation = 1.5707964
 shape = SubResource("RectangleShape2D_5xbjy")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1512947675]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer2" unique_id=1328836176]
+offset_left = 31.0
+offset_top = 16.0
+offset_right = 283.0
+offset_bottom = 58.0
+theme_override_styles/background = SubResource("StyleBoxFlat_bswci")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rus8k")
+max_value = 10.0
+step = 1.0
+value = 5.0
+show_percentage = false
 
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Button" to="." method="_resume"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Button2" to="." method="_quit"]

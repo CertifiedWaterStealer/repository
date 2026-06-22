@@ -1,10 +1,16 @@
 extends CharacterBody2D
 
-
+var stamina: int = 10
 var speed = 600.0
 const JUMP_VELOCITY = -650.0
-
 var double_jump: bool = true 
+
+@export var stamina_ui = ProgressBar
+
+func _ready():
+	if not stamina_ui == null:
+		stamina_ui.max_value = stamina
+		stamina_ui.value = stamina
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -33,8 +39,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
 	if Input.is_action_just_pressed("shift"):
-		speed = 800.0
-	
+		speed = 1000.0
+		stamina > 1
+		stamina -= 1
+		stamina_ui.value = stamina
+		
 	if Input.is_action_just_released("shift"):
 		speed = 600.0
 

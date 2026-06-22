@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var stamina: int = 10
+var stamina: int = 100
 var speed = 600.0
 const JUMP_VELOCITY = -650.0
 var double_jump: bool = true 
@@ -40,8 +40,7 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("shift"):
 		speed = 1000.0
-		stamina > 1
-		stamina -= 1
+		stamina -= 10
 		stamina_ui.value = stamina
 		
 	if Input.is_action_just_released("shift"):

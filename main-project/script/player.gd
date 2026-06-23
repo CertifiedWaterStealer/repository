@@ -38,11 +38,20 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
-	if Input.is_action_just_pressed("shift"):
+	if Input.is_action_pressed("shift"):
 		speed = 1000.0
-		stamina -= 10
+		stamina -= 15
 		stamina_ui.value = stamina
-		
+	elif stamina < 100:
+		stamina += 5 
+		if stamina > 100:
+			stamina = 100
+		elif stamina < 0:
+			stamina = 0
+			if stamina == 0:
+				speed = 600.0	 
+		stamina_ui.value = stamina
+	
 	if Input.is_action_just_released("shift"):
 		speed = 600.0
 

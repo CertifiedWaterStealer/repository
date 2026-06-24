@@ -46,10 +46,10 @@ func _physics_process(delta: float) -> void:
 			if stamina < 0:
 				stamina = 0
 		stamina_ui.value = stamina
-	elif stamina < 100:
+	elif stamina < 200:
 		stamina += 1
-		if stamina > 100:
-			stamina = 100
+		if stamina > 200:
+			stamina = 200
 		stamina_ui.value = stamina 
 	
 	if Input.is_action_just_released("shift"):

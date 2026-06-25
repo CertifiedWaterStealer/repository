@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dilf4hpvg5ff8"]
 
 [ext_resource type="Script" uid="uid://nylu7aocl47" path="res://script/player.gd" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://drmtd62redabo" path="res://assets/items/sword.png" id="2_g2els"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(163, 149)
@@ -21,3 +22,8 @@ shape = SubResource("RectangleShape2D_3vyb7")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1536569633]
 zoom = Vector2(3, 3)
+
+[node name="Sword" type="Sprite2D" parent="." unique_id=1170413994]
+position = Vector2(521.99994, 554)
+scale = Vector2(7.9218736, 7.03125)
+texture = ExtResource("2_g2els")

@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 var stamina: int = 200
-var speed = 600.0
-const JUMP_VELOCITY = -650.0
+var speed = 300.0
+const JUMP_VELOCITY = -325.0
 var double_jump: bool = true 
 @export var stamina_ui: ProgressBar
 
@@ -38,9 +38,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	if Input.is_action_pressed("shift"):
-		speed = 1000.0
+		speed = 500.0
 		if stamina == 0 or stamina < 0:
-			speed = 600.0
+			speed = 300.0
 		if velocity.x != 0:
 			stamina -= 2
 			if stamina < 0:
@@ -53,6 +53,6 @@ func _physics_process(delta: float) -> void:
 		stamina_ui.value = stamina 
 	
 	if Input.is_action_just_released("shift"):
-		speed = 600.0
+		speed = 300.0
 
 	move_and_slide()

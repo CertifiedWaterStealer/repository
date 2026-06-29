@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cxmq7qg5l4qro"]
+
+[ext_resource type="Script" uid="uid://52r615dsn1nv" path="res://script/enemy.gd" id="1_7p1mj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7xaro"]
+radius = 42.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7k104"]
+radius = 45.01111
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1070612794]
+scale = Vector2(0.6002456, 0.5533224)
+script = ExtResource("1_7p1mj")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1459341878]
+offset_left = 216.0
+offset_top = 536.0
+offset_right = 296.0
+offset_bottom = 616.0
+color = Color(0.9349584, 0.2603041, 0.25447345, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=865923333]
+position = Vector2(256, 576)
+shape = SubResource("CircleShape2D_7xaro")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1752616456]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=245161583]
+position = Vector2(256, 576)
+shape = SubResource("CircleShape2D_7k104")
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1900120240]
+visible = false
+offset_right = 4.0
+offset_bottom = 27.0

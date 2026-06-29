@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bmxq1sage2ypn"]
+
+[ext_resource type="Texture2D" uid="uid://drmtd62redabo" path="res://assets/items/sword.png" id="1_74bdg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74bdg"]
+size = Vector2(135.75, 123)
+
+[node name="Area2D" type="Area2D" unique_id=8972587]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=590235798]
+position = Vector2(261.875, 508.5)
+shape = SubResource("RectangleShape2D_74bdg")
+
+[node name="Sword" type="Sprite2D" parent="." unique_id=1929439972]
+position = Vector2(802, 1026)
+scale = Vector2(7.575, 7.25)
+texture = ExtResource("1_74bdg")

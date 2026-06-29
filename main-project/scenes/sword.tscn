@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://bmxq1sage2ypn"]
 
 [ext_resource type="Texture2D" uid="uid://drmtd62redabo" path="res://assets/items/sword.png" id="1_74bdg"]
+[ext_resource type="Script" uid="uid://c07v1vuymric2" path="res://script/sword.gd" id="1_n355p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74bdg"]
 size = Vector2(135.75, 123)
 
 [node name="Area2D" type="Area2D" unique_id=8972587]
+script = ExtResource("1_n355p")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=590235798]
 position = Vector2(261.875, 508.5)
@@ -15,3 +17,5 @@ shape = SubResource("RectangleShape2D_74bdg")
 position = Vector2(802, 1026)
 scale = Vector2(7.575, 7.25)
 texture = ExtResource("1_74bdg")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -4,6 +4,7 @@ var stamina: int = 200
 var speed = 300.0
 const JUMP_VELOCITY = -325.0
 var double_jump: bool = true 
+
 @export var stamina_ui: ProgressBar
 
 func _ready():

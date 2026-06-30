@@ -20,10 +20,8 @@ func take_damage(damage: int) -> bool:
 	var dead: bool = false
 	if health > 1:
 		health -= damage
-		health_bar.value = health
 		if not health_bar.visible:
 			health_bar.show()
 	else:
-		dead = true
-		queue_free()
+		dead = true 
 	return dead

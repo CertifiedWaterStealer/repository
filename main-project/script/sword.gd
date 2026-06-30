@@ -1,7 +1,7 @@
 extends Area2D
 
 var player = CharacterBody2D
-var damage: int = 1
+var damage: int = -1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,5 +14,9 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	pass
+	if body.is_in_group("enemy"):
+		body.take_damage(damage)
+	
+	
+	
 		

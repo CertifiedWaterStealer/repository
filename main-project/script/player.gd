@@ -6,6 +6,7 @@ const JUMP_VELOCITY = -325.0
 var double_jump: bool = true 
 
 @export var stamina_ui: ProgressBar
+@export var stamina_delay: Timer
 
 func _ready():
 	if not stamina_ui == null:
@@ -40,7 +41,7 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_pressed("shift"):
 		speed = 500.0
-		if stamina == 0 or stamina < 0:
+		if stamina <= 0:
 			speed = 300.0
 		if velocity.x != 0:
 			stamina -= 2
@@ -62,7 +63,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _slash() -> void:
-	if stamina == 100 or stamina > 0:
-		print("it worked")
-	
-	
+	if stamina == 200 or stamina > 0:
+		_slash_stamina_drain()
+		print("it worked!!!")
+
+func _slash_stamina_drain() -> void:
+	stamina -= 15
+
+func _on_timer_timeout() -> void:
+	pass

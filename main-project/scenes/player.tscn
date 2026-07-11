@@ -6,9 +6,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(163, 149)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("stamina_delay")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502]
 script = ExtResource("1_3vyb7")
-stamina_delay = NodePath("Timer")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1994605909]
 offset_left = -80.0
@@ -26,9 +25,3 @@ zoom = Vector2(3, 3)
 
 [node name="Area2D" parent="." unique_id=8972587 instance=ExtResource("2_g2els")]
 position = Vector2(-178, -492)
-
-[node name="Timer" type="Timer" parent="." unique_id=96754168]
-wait_time = 2.0
-one_shot = true
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -2,6 +2,7 @@ extends Area2D
 
 var player = CharacterBody2D
 var damage: int = -1
+var is_ready: bool = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,13 +11,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
-
-
-func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("enemy"):
-		body.take_damage(damage)
-	
-	
-	
-		
+	if Input.is_action_just_pressed("ui_slash") and is_ready:
+		is_ready = false
+		$Sword/Timer.start()
+		print("action worked")

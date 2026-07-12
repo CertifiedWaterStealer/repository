@@ -55,12 +55,4 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_released("shift"):
 		speed = 300.0
-	
-	if Input.is_action_just_pressed("ui_slash"):
-		_slash()
-	
 	move_and_slide()
-
-func _slash() -> void:
-	if stamina == 200 or stamina > 0:
-		print("it worked!!!")

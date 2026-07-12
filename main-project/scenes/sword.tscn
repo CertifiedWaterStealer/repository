@@ -20,3 +20,5 @@ texture = ExtResource("1_74bdg")
 
 [node name="Timer" type="Timer" parent="Sword" unique_id=331822509]
 one_shot = true
+
+[connection signal="timeout" from="Sword/Timer" to="." method="_on_timer_timeout"]

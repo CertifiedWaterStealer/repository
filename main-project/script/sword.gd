@@ -15,3 +15,7 @@ func _process(delta: float) -> void:
 		is_ready = false
 		$Sword/Timer.start()
 		print("action worked")
+
+
+func _on_timer_timeout() -> void:
+	is_ready = true

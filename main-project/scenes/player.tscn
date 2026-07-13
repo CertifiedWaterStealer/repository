@@ -27,6 +27,7 @@ zoom = Vector2(3, 3)
 position = Vector2(-178, -492)
 
 [node name="Timer" type="Timer" parent="." unique_id=1868896950]
+wait_time = 1.5
 one_shot = true
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_stamina_delay_timeout"]

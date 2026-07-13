@@ -4,6 +4,7 @@ var stamina: int = 200
 var speed = 300.0
 const JUMP_VELOCITY = -325.0
 var double_jump: bool = true 
+var is_ready: bool = true
 
 @export var stamina_ui: ProgressBar
 
@@ -38,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
-	if Input.is_action_pressed("shift"):
+	if Input.is_action_pressed("shift") and is_ready:
 		speed = 500.0
 		if stamina <= 0:
 			speed = 300.0
@@ -48,6 +49,8 @@ func _physics_process(delta: float) -> void:
 				stamina = 0
 		stamina_ui.value = stamina
 	elif stamina < 200:
+		is_ready = false
+		$Timer.start()
 		stamina += 1
 		if stamina > 200:
 			stamina = 200
@@ -55,4 +58,8 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_released("shift"):
 		speed = 300.0
+	
 	move_and_slide()
+
+func _on_timer_timeout() -> void:
+	is_ready = true

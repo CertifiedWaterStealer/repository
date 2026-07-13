@@ -25,3 +25,8 @@ zoom = Vector2(3, 3)
 
 [node name="Area2D" parent="." unique_id=8972587 instance=ExtResource("2_g2els")]
 position = Vector2(-178, -492)
+
+[node name="Timer" type="Timer" parent="." unique_id=1868896950]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

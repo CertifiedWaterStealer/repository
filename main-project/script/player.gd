@@ -39,24 +39,23 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
-	if Input.is_action_pressed("shift"): 
+	if Input.is_action_pressed("shift") and stamina_is_ready: 
 		speed = 500.0
 		stamina_ui.value = stamina
 		if velocity.x != 0:
 			stamina -= 2
-		elif stamina < 0:
-			stamina = 0
+			if stamina < 0:
+				stamina = 0
 		elif stamina < 200:
+			stamina_is_ready = false
+			$Timer.start()
 			stamina += 2
-		elif stamina > 200:
-			stamina = 200 
-	else: 
-		Input.is_action_just_released("shift")
+			if stamina > 200:
+				stamina = 200
+				
+	if Input.is_action_just_released("shift"):
 		speed = 300.0
-		stamina_ui.value = stamina
-		if stamina < 200:
-			stamina += 2
-			
+		
 	move_and_slide()
 
 func _stamina_delay_timeout() -> void:

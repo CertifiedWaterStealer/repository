@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cddkur0d286ud" path="res://script/main_menu.gd" id="1_l6cm7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
-bg_color = Color(0.7253799, 0.71617407, 0.71005034, 1)
+bg_color = Color(0.6331271, 0.6241209, 0.6151101, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
@@ -26,35 +26,37 @@ offset_bottom = 825.2515
 scale = Vector2(1.0046675, 0.7827813)
 script = ExtResource("1_l6cm7")
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1736332193]
-layout_mode = 0
-offset_left = 31.851334
-offset_top = 25.007624
-offset_right = 1119.8513
-offset_bottom = 179.00763
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=16065152]
+
+[node name="PanelContainer" type="PanelContainer" parent="AnimationPlayer" unique_id=1736332193]
+offset_left = 32.0
+offset_top = 19.5755
+offset_right = 1120.0
+offset_bottom = 173.5755
 theme_override_styles/panel = SubResource("StyleBoxFlat_vue75")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=412637848]
+[node name="VBoxContainer" type="VBoxContainer" parent="AnimationPlayer/PanelContainer" unique_id=412637848]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1983367565]
+[node name="Label" type="Label" parent="AnimationPlayer/PanelContainer/VBoxContainer" unique_id=1983367565]
 layout_mode = 2
 text = "Thief's Delusion"
 label_settings = SubResource("LabelSettings_l6cm7")
 horizontal_alignment = 1
 
-[node name="PanelContainer2" type="PanelContainer" parent="." unique_id=1390203928]
-layout_mode = 0
-offset_left = 640.01276
-offset_top = 225.0686
-offset_right = 1120.0127
-offset_bottom = 369.0686
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="." unique_id=932314769]
+
+[node name="PanelContainer2" type="PanelContainer" parent="AnimationPlayer2" unique_id=1390203928]
+offset_left = 643.0
+offset_top = 176.17949
+offset_right = 1123.0
+offset_bottom = 320.1795
 theme_override_styles/panel = SubResource("StyleBoxFlat_vue75")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer2" unique_id=891565821]
+[node name="VBoxContainer" type="VBoxContainer" parent="AnimationPlayer2/PanelContainer2" unique_id=891565821]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PanelContainer2/VBoxContainer" unique_id=1829035242]
+[node name="Button" type="Button" parent="AnimationPlayer2/PanelContainer2/VBoxContainer" unique_id=1829035242]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.893123, 0.40036058, 0.8613657, 1)
@@ -63,18 +65,19 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_l6cm7")
 text = "Play"
 flat = true
 
-[node name="PanelContainer3" type="PanelContainer" parent="." unique_id=392078220]
-layout_mode = 0
-offset_left = 640.01276
-offset_top = 425.1296
-offset_right = 1120.0127
-offset_bottom = 569.12964
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="." unique_id=413217563]
+
+[node name="PanelContainer3" type="PanelContainer" parent="AnimationPlayer3" unique_id=392078220]
+offset_left = 643.0
+offset_top = 332.7835
+offset_right = 1123.0
+offset_bottom = 476.78354
 theme_override_styles/panel = SubResource("StyleBoxFlat_vue75")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer3" unique_id=42840060]
+[node name="VBoxContainer" type="VBoxContainer" parent="AnimationPlayer3/PanelContainer3" unique_id=42840060]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PanelContainer3/VBoxContainer" unique_id=1696901736]
+[node name="Button" type="Button" parent="AnimationPlayer3/PanelContainer3/VBoxContainer" unique_id=1696901736]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.893123, 0.40036058, 0.8613657, 1)
@@ -82,18 +85,19 @@ theme_override_font_sizes/font_size = 90
 text = "Options"
 flat = true
 
-[node name="PanelContainer4" type="PanelContainer" parent="." unique_id=564152094]
-layout_mode = 0
-offset_left = 640.01276
-offset_top = 637.6944
-offset_right = 1120.0127
-offset_bottom = 781.6944
+[node name="AnimationPlayer4" type="AnimationPlayer" parent="." unique_id=1831262915]
+
+[node name="PanelContainer4" type="PanelContainer" parent="AnimationPlayer4" unique_id=564152094]
+offset_left = 643.0
+offset_top = 499.17526
+offset_right = 1123.0
+offset_bottom = 643.1753
 theme_override_styles/panel = SubResource("StyleBoxFlat_vue75")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer4" unique_id=28871200]
+[node name="VBoxContainer" type="VBoxContainer" parent="AnimationPlayer4/PanelContainer4" unique_id=28871200]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PanelContainer4/VBoxContainer" unique_id=1336915395]
+[node name="Button" type="Button" parent="AnimationPlayer4/PanelContainer4/VBoxContainer" unique_id=1336915395]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.893123, 0.40036058, 0.8613657, 1)
@@ -101,6 +105,6 @@ theme_override_font_sizes/font_size = 90
 text = "Quit"
 flat = true
 
-[connection signal="pressed" from="PanelContainer2/VBoxContainer/Button" to="." method="_play"]
-[connection signal="pressed" from="PanelContainer3/VBoxContainer/Button" to="." method="_option"]
-[connection signal="pressed" from="PanelContainer4/VBoxContainer/Button" to="." method="_quit"]
+[connection signal="pressed" from="AnimationPlayer2/PanelContainer2/VBoxContainer/Button" to="." method="_play"]
+[connection signal="pressed" from="AnimationPlayer3/PanelContainer3/VBoxContainer/Button" to="." method="_option"]
+[connection signal="pressed" from="AnimationPlayer4/PanelContainer4/VBoxContainer/Button" to="." method="_quit"]

@@ -36,6 +36,8 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("a_key", "d_key")
 	if direction:
 		velocity.x = direction * speed
+		if Input.is_action_pressed("a_key"):
+			pass
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 

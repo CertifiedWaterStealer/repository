@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 			stamina -= 2
 			if stamina < 0:
 				stamina = 0 
-	elif stamina_is_ready:
+	elif stamina_is_ready == true:
 		if stamina < 200:
 			stamina += 2
 			stamina_ui.value = stamina

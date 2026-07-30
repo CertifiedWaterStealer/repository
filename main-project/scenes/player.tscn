@@ -20,11 +20,13 @@ color = Color(0.691728, 0.9772342, 0.8292426, 1)
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_3vyb7")
 
+[node name="Node2D" type="Node2D" parent="." unique_id=216424548]
+
+[node name="Area2D" parent="Node2D" unique_id=8972587 instance=ExtResource("2_g2els")]
+position = Vector2(-178, -492)
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1536569633]
 zoom = Vector2(3, 3)
-
-[node name="Area2D" parent="." unique_id=8972587 instance=ExtResource("2_g2els")]
-position = Vector2(-178, -492)
 
 [node name="Timer" type="Timer" parent="." unique_id=1868896950]
 one_shot = true

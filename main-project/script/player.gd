@@ -7,6 +7,7 @@ var double_jump: bool = true
 var stamina_is_ready: bool = true
 
 @export var stamina_ui: ProgressBar
+@export var stamina_delay: Timer
 
 func _ready():
 	if not stamina_ui == null:
@@ -60,7 +61,7 @@ func _physics_process(delta: float) -> void:
 				
 	if Input.is_action_just_released("shift"):
 		speed = 300.0
-		$Timer.start()
+		stamina_delay.start()
 		
 	move_and_slide()
 

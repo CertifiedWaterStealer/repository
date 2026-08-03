@@ -16,6 +16,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_slash") and is_ready:
 		sword_animations.play("m1_animation")
+		if sword_animations.animation_finished:
+			pass
 		is_ready = false
 		sword_m1_cooldown.start()
 		print("action worked")
@@ -23,3 +25,9 @@ func _process(delta: float) -> void:
 
 func _on_timer_timeout() -> void:
 	is_ready = true
+
+func _on_body_entered(body: Node2D) -> void:
+	pass
+
+func _take_damage() -> void:
+	pass

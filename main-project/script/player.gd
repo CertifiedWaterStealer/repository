@@ -8,6 +8,7 @@ var stamina_is_ready: bool = true
 
 @export var stamina_ui: ProgressBar
 @export var stamina_delay: Timer
+@export var character: CharacterBody2D
 
 func _ready():
 	if not stamina_ui == null:
@@ -37,8 +38,7 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("a_key", "d_key")
 	if direction:
 		velocity.x = direction * speed
-		if Input.is_action_pressed("a_key"):
-			pass
+		# character.flip_h = direction < 0 
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 

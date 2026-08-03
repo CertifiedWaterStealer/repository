@@ -6,9 +6,9 @@
 radius = 42.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7k104"]
-radius = 45.01111
+radius = 43.88029
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1070612794 node_paths=PackedStringArray("health_bar")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1070612794 node_paths=PackedStringArray("health_bar") groups=["enemy"]]
 scale = Vector2(0.6002456, 0.5533224)
 script = ExtResource("1_7p1mj")
 health_bar = NodePath("ProgressBar")
@@ -34,7 +34,7 @@ shape = SubResource("CircleShape2D_7k104")
 visible = false
 offset_right = 4.0
 offset_bottom = 27.0
-max_value = 10.0
+max_value = 3.0
 step = 1.0
-value = 5.0
+value = 3.0
 show_percentage = false

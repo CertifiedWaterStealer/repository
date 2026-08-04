@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cddkur0d286ud" path="res://script/main_menu.gd" id="1_l6cm7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
-bg_color = Color(0.6331271, 0.6241209, 0.6151101, 1)
+bg_color = Color(0.4563194, 0.6988642, 0.4036974, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5

@@ -1,14 +1,19 @@
 extends CharacterBody2D
 
 var stamina: int = 200
+var stamina_drain = -2
+
 var speed = 300.0
+var sprint_speed = 500.0
+const WALK_SPEED: float = 300.0
+
 const JUMP_VELOCITY = -325.0
 var double_jump: bool = true 
 var stamina_is_ready: bool = true
 
 @export var stamina_ui: ProgressBar
 @export var stamina_delay: Timer
-@export var character: CharacterBody2D
+@export var character: Node2D
 
 func _ready():
 	if not stamina_ui == null:
@@ -38,12 +43,12 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("a_key", "d_key")
 	if direction:
 		velocity.x = direction * speed
-		# character.flip_h = direction < 0 
+		character.scale.x = -1 if direction < 0 else 1
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	if Input.is_action_pressed("shift"): 
-		speed = 500.0
+		speed = sprint_speed
 		stamina_ui.value = stamina
 		if velocity.x != 0:
 			stamina_is_ready = false
@@ -51,7 +56,7 @@ func _physics_process(delta: float) -> void:
 			if stamina < 0:
 				stamina = 0 
 				if stamina == 0:
-					speed = 300.0
+					speed = WALK_SPEED
 	elif stamina_is_ready == true:
 		if stamina < 200:
 			stamina += 2
@@ -62,7 +67,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_released("shift"):
 		speed = 300.0
 		stamina_delay.start()
-		
+	
 	move_and_slide()
 
 func _stamina_delay_timeout() -> void:

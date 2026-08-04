@@ -108,12 +108,11 @@ tile_set = SubResource("TileSet_4nkto")
 [node name="CharacterBody2D2" parent="." unique_id=1070612794 instance=ExtResource("4_5xbjy")]
 position = Vector2(48, 297)
 
-[node name="CharacterBody2D" parent="." unique_id=188757502 node_paths=PackedStringArray("stamina_ui", "character") instance=ExtResource("1_014kd")]
+[node name="CharacterBody2D" parent="." unique_id=188757502 node_paths=PackedStringArray("stamina_ui") instance=ExtResource("1_014kd")]
 process_mode = 1
 position = Vector2(40, 625)
 scale = Vector2(0.096670724, 0.09918817)
 stamina_ui = NodePath("../CanvasLayer2/ProgressBar")
-character = NodePath(".")
 
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Button" to="." method="_resume"]
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Button2" to="." method="_quit"]

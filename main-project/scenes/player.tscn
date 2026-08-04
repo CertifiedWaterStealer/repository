@@ -2,13 +2,35 @@
 
 [ext_resource type="Script" uid="uid://nylu7aocl47" path="res://script/player.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://bmxq1sage2ypn" path="res://scenes/sword.tscn" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://bkh04iblnx7br" path="res://icon.svg" id="3_qhqgy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dqkch"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qhqgy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(163, 149)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("stamina_delay")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("stamina_delay", "character")]
 script = ExtResource("1_3vyb7")
 stamina_delay = NodePath("Timer")
+character = NodePath("Node2D")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=216424548]
+
+[node name="Area2D" parent="Node2D" unique_id=8972587 instance=ExtResource("2_g2els")]
+position = Vector2(83, 32)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2D" unique_id=465445322]
+position = Vector2(-471, -62)
+sprite_frames = SubResource("SpriteFrames_dqkch")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1994605909]
 offset_left = -80.0
@@ -20,11 +42,6 @@ color = Color(0.691728, 0.9772342, 0.8292426, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1564119284]
 position = Vector2(1.5, -3.5)
 shape = SubResource("RectangleShape2D_3vyb7")
-
-[node name="Node2D" type="Node2D" parent="." unique_id=216424548]
-
-[node name="Area2D" parent="Node2D" unique_id=8972587 instance=ExtResource("2_g2els")]
-position = Vector2(83, 32)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1536569633]
 zoom = Vector2(3, 3)

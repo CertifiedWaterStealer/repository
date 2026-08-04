@@ -1,7 +1,7 @@
 extends Area2D
 
 var player = CharacterBody2D
-var damage: int = -1
+var damage: int = 2
 var is_ready: bool = true
 
 @export var sword_animations: AnimationPlayer
@@ -20,14 +20,11 @@ func _process(delta: float) -> void:
 			pass
 		is_ready = false
 		sword_m1_cooldown.start()
-		print("action worked")
-
 
 func _on_timer_timeout() -> void:
 	is_ready = true
 
-func _on_body_entered(body: Node2D) -> void:
-	pass
 
-func _take_damage() -> void:
-	pass
+func _on_body_entered(body: Node2D) -> void:
+	if body is Enemy:
+		body._take_damage(damage)

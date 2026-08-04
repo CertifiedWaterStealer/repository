@@ -1,3 +1,4 @@
+class_name Enemy
 extends CharacterBody2D
 
 var health: int = 50
@@ -12,4 +13,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if health > 0:
+		pass
+	elif health < 1:
+		print("The enemy died")
+
+func _take_damage(damage: int) -> void:
+	health -= damage
+	print("it worked!!!")

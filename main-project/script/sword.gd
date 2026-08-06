@@ -14,7 +14,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("E_key") and is_ready:
+	if Input.is_action_just_pressed("e_key") or ("m1") and is_ready:
 		is_ready = false
 		_slash()
 		sword_m1_cooldown.start()

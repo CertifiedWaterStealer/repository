@@ -32,8 +32,10 @@ shape = SubResource("CircleShape2D_7k104")
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1900120240]
 visible = false
-offset_right = 4.0
-offset_bottom = 27.0
+offset_left = 204.91612
+offset_top = 506.0341
+offset_right = 306.54114
+offset_bottom = 522.19055
 max_value = 3.0
 step = 1.0
 value = 3.0

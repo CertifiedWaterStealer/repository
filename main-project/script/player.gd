@@ -1,15 +1,19 @@
 extends CharacterBody2D
 
 var stamina: int = 200
-var stamina_drain = -2
+const STAMINA_DRAIN: int = 2
+const STAMINA_MAX_VALUE: int = 0
+const STAMINA_LOWEST_VALUE: int = 0
+const  STAMINA_REGEN: int = 2
+var stamina_is_ready: bool = true
 
 var speed = 300.0
-var sprint_speed = 500.0
+const SPRINT_SPEED: float = 500.0
 const WALK_SPEED: float = 300.0
 
-const JUMP_VELOCITY = -325.0
+const 	ZERO_VELOCITY: float = 0
+const JUMP_VELOCITY: float = -325.0
 var double_jump: bool = true 
-var stamina_is_ready: bool = true
 
 @export var stamina_ui: ProgressBar
 @export var stamina_delay: Timer
@@ -48,24 +52,24 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	if Input.is_action_pressed("shift"): 
-		speed = sprint_speed
+		speed = SPRINT_SPEED
 		stamina_ui.value = stamina
-		if velocity.x != 0:
+		if velocity.x != ZERO_VELOCITY:
 			stamina_is_ready = false
-			stamina -= 2
+			stamina -= STAMINA_DRAIN
 			if stamina < 0:
-				stamina = 0 
-				if stamina == 0:
+				stamina = STAMINA_MAX_VALUE
+				if stamina == STAMINA_LOWEST_VALUE:
 					speed = WALK_SPEED
 	elif stamina_is_ready == true:
 		if stamina < 200:
-			stamina += 2
+			stamina += STAMINA_REGEN
 			stamina_ui.value = stamina
 			if stamina > 200:
-				stamina = 200
+				stamina = STAMINA_MAX_VALUE
 				
 	if Input.is_action_just_released("shift"):
-		speed = 300.0
+		speed = WALK_SPEED
 		stamina_delay.start()
 	
 	move_and_slide()

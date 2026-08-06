@@ -13,18 +13,20 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_slash") and is_ready:
-		sword_animations.play("m1_animation")
-		if sword_animations.animation_finished:
-			pass
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("E_key") and is_ready:
 		is_ready = false
+		_slash()
 		sword_m1_cooldown.start()
 
 func _on_timer_timeout() -> void:
 	is_ready = true
 
-
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		body._take_damage(damage)
+
+func _slash() -> void:
+		sword_animations.play("m1_animation")
+		if sword_animations.animation_finished:
+			pass

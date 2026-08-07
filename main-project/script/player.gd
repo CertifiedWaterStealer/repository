@@ -11,7 +11,7 @@ var speed = 300.0
 const SPRINT_SPEED: float = 500.0
 const WALK_SPEED: float = 300.0
 
-const 	ZERO_VELOCITY: float = 0
+const ZERO_VELOCITY: float = 0
 const JUMP_VELOCITY: float = -325.0
 var double_jump: bool = true 
 

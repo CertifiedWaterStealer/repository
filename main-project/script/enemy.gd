@@ -19,4 +19,5 @@ func _process(_delta: float) -> void:
 
 func _take_damage(damage: int) -> void:
 	health -= damage
+	print(health)
 	print("it worked!!!")

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var is_ready: bool = true
+
 var stamina: int = 200
 const STAMINA_DRAIN: int = 2
 const STAMINA_MAX_VALUE: int = 0
@@ -76,3 +78,6 @@ func _physics_process(delta: float) -> void:
 
 func _stamina_delay_timeout() -> void:
 	stamina_is_ready = true
+
+func _sword_m1_timer_timeout() -> void:
+	is_ready = true

@@ -17,6 +17,8 @@ character = NodePath("Node2D")
 z_index = 1
 position = Vector2(83, 32)
 
+[node name="Timer" type="Timer" parent="Node2D/Area2D" unique_id=868863543]
+
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1994605909]
 offset_left = -80.0
 offset_top = -78.0
@@ -34,4 +36,5 @@ zoom = Vector2(3, 3)
 [node name="Timer" type="Timer" parent="." unique_id=1868896950]
 one_shot = true
 
+[connection signal="timeout" from="Node2D/Area2D/Timer" to="." method="_sword_m1_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_stamina_delay_timeout"]

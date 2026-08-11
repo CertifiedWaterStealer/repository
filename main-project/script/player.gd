@@ -6,7 +6,7 @@ var stamina: int = 200
 const STAMINA_DRAIN: int = 2
 const STAMINA_MAX_VALUE: int = 0
 const STAMINA_LOWEST_VALUE: int = 0
-const  STAMINA_REGEN: int = 2
+const STAMINA_REGEN: int = 2
 var stamina_is_ready: bool = true
 
 var speed = 300.0
@@ -17,14 +17,19 @@ const ZERO_VELOCITY: float = 0
 const JUMP_VELOCITY: float = -325.0
 var double_jump: bool = true 
 
+var sword_animation = AnimationPlayer
+
 @export var stamina_ui: ProgressBar
 @export var stamina_delay: Timer
 @export var character: Node2D
+@export var sword: Area2D
+@export var m1_timer: Timer
 
 func _ready():
 	if not stamina_ui == null:
 		stamina_ui.max_value = stamina
 		stamina_ui.value = stamina
+		sword_animation = sword.sword_animations
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -52,6 +57,11 @@ func _physics_process(delta: float) -> void:
 		character.scale.x = -1 if direction < 0 else 1
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
+	
+	if Input.is_action_just_pressed("dash"):
+		$dash_timer.start()
+		speed *= 2 
+		velocity.x = direction * speed
 
 	if Input.is_action_pressed("shift"): 
 		speed = SPRINT_SPEED
@@ -74,6 +84,11 @@ func _physics_process(delta: float) -> void:
 		speed = WALK_SPEED
 		stamina_delay.start()
 	
+	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and is_ready:
+		is_ready = false
+		_m1()
+		m1_timer.start()
+	
 	move_and_slide()
 
 func _stamina_delay_timeout() -> void:
@@ -81,3 +96,9 @@ func _stamina_delay_timeout() -> void:
 
 func _sword_m1_timer_timeout() -> void:
 	is_ready = true
+
+func _m1():
+	sword_animation.play("m1_animation")
+	
+func _on_dash_timer_timeout() -> void:
+	speed = 300.0

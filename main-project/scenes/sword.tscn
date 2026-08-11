@@ -96,10 +96,9 @@ _data = {
 &"m1_animation": SubResource("Animation_s4ec8")
 }
 
-[node name="Area2D" type="Area2D" unique_id=8972587 node_paths=PackedStringArray("sword_animations", "sword_m1_cooldown")]
+[node name="Area2D" type="Area2D" unique_id=8972587 node_paths=PackedStringArray("sword_animations")]
 script = ExtResource("1_n355p")
 sword_animations = NodePath("Node2D/Sword/AnimationPlayer")
-sword_m1_cooldown = NodePath("")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=590235798]
 position = Vector2(4, -23.75)

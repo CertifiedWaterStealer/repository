@@ -6,10 +6,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(163, 149)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("stamina_delay", "character")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("stamina_delay", "character", "sword", "m1_timer")]
 script = ExtResource("1_3vyb7")
 stamina_delay = NodePath("Timer")
 character = NodePath("Node2D")
+sword = NodePath("Node2D/Area2D")
+m1_timer = NodePath("Node2D/Area2D/Timer")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=216424548]
 
@@ -18,6 +20,8 @@ z_index = 1
 position = Vector2(83, 32)
 
 [node name="Timer" type="Timer" parent="Node2D/Area2D" unique_id=868863543]
+wait_time = 2.0
+one_shot = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1994605909]
 offset_left = -80.0
@@ -36,5 +40,10 @@ zoom = Vector2(3, 3)
 [node name="Timer" type="Timer" parent="." unique_id=1868896950]
 one_shot = true
 
+[node name="dash_timer" type="Timer" parent="." unique_id=465171646]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="timeout" from="Node2D/Area2D/Timer" to="." method="_sword_m1_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_stamina_delay_timeout"]
+[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]

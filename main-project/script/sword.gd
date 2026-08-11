@@ -4,7 +4,6 @@ var player = CharacterBody2D
 var damage: int = 2
 
 @export var sword_animations: AnimationPlayer
-@export var sword_m1_cooldown: Timer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

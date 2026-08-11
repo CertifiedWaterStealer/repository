@@ -6,12 +6,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(163, 149)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("stamina_delay", "character", "sword", "m1_timer")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("stamina_delay", "character", "sword", "m1_timer", "dash_timer")]
 script = ExtResource("1_3vyb7")
 stamina_delay = NodePath("Timer")
 character = NodePath("Node2D")
 sword = NodePath("Node2D/Area2D")
 m1_timer = NodePath("Node2D/Area2D/Timer")
+dash_timer = NodePath("dash_timer")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=216424548]
 

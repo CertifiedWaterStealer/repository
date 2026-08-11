@@ -12,6 +12,7 @@ var stamina_is_ready: bool = true
 var speed = 300.0
 const SPRINT_SPEED: float = 500.0
 const WALK_SPEED: float = 300.0
+const SPEED_MULTIPLIER: float = 2
 
 const ZERO_VELOCITY: float = 0
 const JUMP_VELOCITY: float = -325.0
@@ -24,6 +25,7 @@ var sword_animation = AnimationPlayer
 @export var character: Node2D
 @export var sword: Area2D
 @export var m1_timer: Timer
+@export var dash_timer: Timer
 
 func _ready():
 	if not stamina_ui == null:
@@ -59,8 +61,8 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
 	if Input.is_action_just_pressed("dash"):
-		$dash_timer.start()
-		speed *= 2 
+		dash_timer.start()
+		speed *= SPEED_MULTIPLIER
 		velocity.x = direction * speed
 
 	if Input.is_action_pressed("shift"): 

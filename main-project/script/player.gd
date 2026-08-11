@@ -63,6 +63,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("dash"):
 		dash_timer.start()
 		speed *= SPEED_MULTIPLIER
+		speed = clamp(speed, 1, 1000)
 		velocity.x = direction * speed
 
 	if Input.is_action_pressed("shift"): 
@@ -103,4 +104,4 @@ func _m1():
 	sword_animation.play("m1_animation")
 	
 func _on_dash_timer_timeout() -> void:
-	speed = 300.0
+	speed = WALK_SPEED

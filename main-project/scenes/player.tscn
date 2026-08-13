@@ -6,13 +6,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(163, 149)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("stamina_delay", "character", "sword", "m1_timer", "dash_timer")]
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("stamina_delay", "character", "sword", "m1_timer", "dash_timer", "dash_cooldown")]
 script = ExtResource("1_3vyb7")
 stamina_delay = NodePath("Timer")
 character = NodePath("Node2D")
 sword = NodePath("Node2D/Area2D")
 m1_timer = NodePath("Node2D/Area2D/Timer")
 dash_timer = NodePath("dash_timer")
+dash_cooldown = NodePath("dash_cooldown_timer")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=216424548]
 
@@ -45,6 +46,10 @@ one_shot = true
 wait_time = 0.3
 one_shot = true
 
+[node name="dash_cooldown_timer" type="Timer" parent="." unique_id=130499142]
+one_shot = true
+
 [connection signal="timeout" from="Node2D/Area2D/Timer" to="." method="_sword_m1_timer_timeout"]
 [connection signal="timeout" from="Timer" to="." method="_stamina_delay_timeout"]
-[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="dash_timer" to="." method="_on_dash_runtime_timeout"]
+[connection signal="timeout" from="dash_cooldown_timer" to="." method="_on_dash_cooldown_timer_timeout"]

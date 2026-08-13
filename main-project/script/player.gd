@@ -1,6 +1,8 @@
 extends CharacterBody2D
 
-var is_ready: bool = true
+var sword_timer_is_ready: bool = true
+var sword_animation = AnimationPlayer
+var dash_cooldown_timer_is_ready: bool = true 
 
 var stamina: int = 200
 const STAMINA_DRAIN: int = 2
@@ -10,15 +12,13 @@ const STAMINA_REGEN: int = 2
 var stamina_is_ready: bool = true
 
 var speed = 300.0
-const SPRINT_SPEED: float = 500.0
+const SPRINT_SPEED: float = 400.0
 const WALK_SPEED: float = 300.0
-const SPEED_MULTIPLIER: float = 2
+const DASH_SPEED: float = 600.0
 
 const ZERO_VELOCITY: float = 0
 const JUMP_VELOCITY: float = -325.0
 var double_jump: bool = true 
-
-var sword_animation = AnimationPlayer
 
 @export var stamina_ui: ProgressBar
 @export var stamina_delay: Timer
@@ -26,6 +26,7 @@ var sword_animation = AnimationPlayer
 @export var sword: Area2D
 @export var m1_timer: Timer
 @export var dash_timer: Timer
+@export var dash_cooldown: Timer
 
 func _ready():
 	if not stamina_ui == null:
@@ -60,11 +61,10 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 	
-	if Input.is_action_just_pressed("dash"):
-		dash_timer.start()
-		speed *= SPEED_MULTIPLIER
-		speed = clamp(speed, 1, 1000)
-		velocity.x = direction * speed
+	if Input.is_action_just_pressed("dash") and dash_cooldown_timer_is_ready:
+		dash_cooldown_timer_is_ready = false
+		_dash()
+		dash_cooldown.start()
 
 	if Input.is_action_pressed("shift"): 
 		speed = SPRINT_SPEED
@@ -87,8 +87,8 @@ func _physics_process(delta: float) -> void:
 		speed = WALK_SPEED
 		stamina_delay.start()
 	
-	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and is_ready:
-		is_ready = false
+	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and sword_timer_is_ready:
+		sword_timer_is_ready = false
 		_m1()
 		m1_timer.start()
 	
@@ -98,10 +98,17 @@ func _stamina_delay_timeout() -> void:
 	stamina_is_ready = true
 
 func _sword_m1_timer_timeout() -> void:
-	is_ready = true
+	sword_timer_is_ready = true
 
 func _m1():
 	sword_animation.play("m1_animation")
-	
-func _on_dash_timer_timeout() -> void:
+
+func _on_dash_runtime_timeout() -> void:
 	speed = WALK_SPEED
+
+func _on_dash_cooldown_timer_timeout() -> void:
+	dash_cooldown_timer_is_ready = true
+
+func _dash() -> void:
+	dash_timer.start()
+	speed = DASH_SPEED

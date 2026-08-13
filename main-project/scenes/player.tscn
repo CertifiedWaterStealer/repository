@@ -47,6 +47,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="dash_cooldown_timer" type="Timer" parent="." unique_id=130499142]
+wait_time = 0.7
 one_shot = true
 
 [connection signal="timeout" from="Node2D/Area2D/Timer" to="." method="_sword_m1_timer_timeout"]

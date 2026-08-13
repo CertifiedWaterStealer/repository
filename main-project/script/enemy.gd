@@ -3,19 +3,21 @@ extends CharacterBody2D
 
 var health: int = 50
 
-@export var health_bar: ProgressBar
+@export var health_ui: ProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	health_bar.max_value = health
-	health_bar.value = health
+	health_ui.max_value = health
+	health_ui.value = health
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if health < 1:
-		print("The enemy died")
+		queue_free()
+		print("enemy died")
 	elif health < 50:
-		health_bar.show()
+		health_ui.show()
+	health_ui.value = health
 
 func _take_damage(damage: int) -> void:
 	health -= damage

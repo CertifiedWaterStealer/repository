@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 var sword_timer_is_ready: bool = true
 var sword_animation = AnimationPlayer
+
 var dash_cooldown_timer_is_ready: bool = true 
 
 var stamina: int = 200
@@ -91,7 +92,7 @@ func _physics_process(delta: float) -> void:
 		sword_timer_is_ready = false
 		_m1()
 		m1_timer.start()
-	
+		
 	move_and_slide()
 
 func _stamina_delay_timeout() -> void:

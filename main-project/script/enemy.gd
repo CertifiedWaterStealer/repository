@@ -1,7 +1,7 @@
 class_name Enemy
 extends CharacterBody2D
 
-var health: int = 50
+var health: int = 30
 
 @export var health_ui: ProgressBar
 
@@ -15,7 +15,7 @@ func _process(_delta: float) -> void:
 	if health < 1:
 		queue_free()
 		print("enemy died")
-	elif health < 50:
+	elif health < 30:
 		health_ui.show()
 	health_ui.value = health
 

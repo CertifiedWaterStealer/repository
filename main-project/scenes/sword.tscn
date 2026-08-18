@@ -117,4 +117,5 @@ texture = ExtResource("1_74bdg")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/Sword" unique_id=1527173894]
 libraries/ = SubResource("AnimationLibrary_k5whp")
 
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="Node2D/Sword/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

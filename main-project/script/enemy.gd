@@ -12,14 +12,16 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if health < 1:
-		queue_free()
-		print("enemy died")
-	elif health < 30:
-		health_ui.show()
-	health_ui.value = health
+	pass
 
-func _take_damage(damage: int) -> void:
-	health -= damage
-	print(health)
-	print("it worked!!!")
+func _take_damage(damage: int) -> bool:
+	var dead: bool = false
+	if health > 1: 
+		health -= damage
+		health_ui.value = health
+		if not health_ui.visible:
+			health_ui.show()
+	else:
+		dead = true
+		queue_free()
+	return dead

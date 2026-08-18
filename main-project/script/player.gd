@@ -101,7 +101,7 @@ func _stamina_delay_timeout() -> void:
 func _sword_m1_timer_timeout() -> void:
 	sword_timer_is_ready = true
 
-func _m1():
+func _m1() -> void:
 	sword_animation.play("m1_animation")
 
 func _on_dash_runtime_timeout() -> void:

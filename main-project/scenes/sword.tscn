@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://drmtd62redabo" path="res://assets/items/sword.png" id="1_74bdg"]
 [ext_resource type="Script" uid="uid://c07v1vuymric2" path="res://script/sword.gd" id="1_n355p"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_74bdg"]
-size = Vector2(182, 170.5)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n355p"]
+radius = 28.284271
+height = 161.22035
 
 [sub_resource type="Animation" id="Animation_n355p"]
 length = 0.001
@@ -101,8 +102,9 @@ script = ExtResource("1_n355p")
 sword_animations = NodePath("Node2D/Sword/AnimationPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=590235798]
-position = Vector2(4, -23.75)
-shape = SubResource("RectangleShape2D_74bdg")
+position = Vector2(12.999999, -31)
+rotation = 0.7853982
+shape = SubResource("CapsuleShape2D_n355p")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=717270500]
 position = Vector2(-28, 2.5)
@@ -115,5 +117,4 @@ texture = ExtResource("1_74bdg")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D/Sword" unique_id=1527173894]
 libraries/ = SubResource("AnimationLibrary_k5whp")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="Node2D/Sword/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

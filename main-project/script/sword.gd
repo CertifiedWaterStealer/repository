@@ -13,10 +13,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	if anim_name == "m1_animation":
-		sword_animations.play("idle_animation")
-
 func _on_body_entered(body: Node2D) -> void:
 	if body is Enemy:
 		body._take_damage(damage)
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "m1_animation":
+		pass

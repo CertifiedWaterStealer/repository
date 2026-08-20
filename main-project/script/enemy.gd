@@ -3,6 +3,12 @@ extends CharacterBody2D
 
 var health: int = 30
 
+const SPEED: float = 250.0
+
+var player: CharacterBody2D
+
+var overlapping: bool = true
+
 @export var health_ui: ProgressBar
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +18,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	pass
+	if not player == null:
+		look_at(player.global_position)
+		velocity = SPEED * Vector2(1, 0).rotated(rotation)
+		
+		health_ui.rotation = -rotation
+		
+		move_and_slide()
 
 func _take_damage(damage: int) -> bool:
 	var dead: bool = false
@@ -25,3 +37,7 @@ func _take_damage(damage: int) -> bool:
 		dead = true
 		queue_free()
 	return dead
+
+func _on_area_2d_body_exited(body: Node2D) -> void:
+	if body == player:
+		overlapping = false

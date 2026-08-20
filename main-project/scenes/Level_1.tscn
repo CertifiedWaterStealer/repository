@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dilf4hpvg5ff8" path="res://scenes/player.tscn" id="1_014kd"]
 [ext_resource type="Script" uid="uid://chjm4jrkkfp8l" path="res://script/pause_menu.gd" id="1_bswci"]
+[ext_resource type="Texture2D" uid="uid://b5knaepjxnhl5" path="res://assets/tilemap/temple_tilemap.png" id="4_4nkto"]
 [ext_resource type="PackedScene" uid="uid://cxmq7qg5l4qro" path="res://scenes/enemy.tscn" id="4_5xbjy"]
 
 [sub_resource type="Environment" id="Environment_rf3rd"]
@@ -19,15 +20,12 @@ bg_color = Color(0.9764706, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rus8k"]
 bg_color = Color(9.048581e-06, 0.9605697, 0.91356575, 1)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rus8k"]
-load_path = "res://.godot/imported/temple_tilemap.png-de0d2990905a2d57826919ceb801d072.ctex"
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcfvj"]
-texture = SubResource("CompressedTexture2D_rus8k")
+texture = ExtResource("4_4nkto")
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, 8, 8, -8, -8, -8)
 1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 1.4798775, 1.1316719, -4.2655296, 1.1316719)
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, 8, -8, -8, -8, -8, 8)
 2:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
@@ -39,8 +37,11 @@ texture = SubResource("CompressedTexture2D_rus8k")
 10:0/0 = 0
 11:0/0 = 0
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
 2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, 8, -8, -8, -8, -8, 8)
 3:1/0 = 0
 4:1/0 = 0
 5:1/0 = 0
@@ -51,9 +52,13 @@ texture = SubResource("CompressedTexture2D_rus8k")
 10:1/0 = 0
 11:1/0 = 0
 0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, 8, -8, -8, -8, -8, 8)
 1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
 2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, 8, -8, -8, -8, -8, 1.4798775, -8, 8)
 3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, 8, -8, -8, -8, -8, 8)
 4:2/0 = 0
 5:2/0 = 0
 6:2/0 = 0
@@ -63,10 +68,15 @@ texture = SubResource("CompressedTexture2D_rus8k")
 10:2/0 = 0
 11:2/0 = 0
 0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
 1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, 8, -8, -8, -8, -8, 8)
 2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, 8, -8, -8, -8, -8, 8)
 3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
 4:3/0 = 0
+4:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, 8, -8, -8, -8, -8, 8)
 5:3/0 = 0
 6:3/0 = 0
 7:3/0 = 0
@@ -173,7 +183,7 @@ texture = SubResource("CompressedTexture2D_rus8k")
 
 [sub_resource type="TileSet" id="TileSet_rus8k"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_fcfvj")
+sources/1 = SubResource("TileSetAtlasSource_fcfvj")
 
 [node name="Node2D" type="Node2D" unique_id=1521934313]
 process_mode = 3
@@ -243,7 +253,7 @@ scale = Vector2(0.096670724, 0.09918817)
 stamina_ui = NodePath("../CanvasLayer2/ProgressBar")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=601652045]
-tile_map_data = PackedByteArray("AAAAACgAAAAAAAAAAAABACgAAAAAAAAAAAACACgAAAABAAAAAAADACgAAAABAAAAAAAEACgAAAABAAAAAAAFACgAAAAAAAAAAAAGACgAAAAAAAAAAAAHACgAAAAAAAAAAAAIACgAAAABAAAAAAAJACgAAAABAAAAAAAKACgAAAABAAAAAAALACgAAAABAAAAAAAMACgAAAABAAAAAAANACgAAAAAAAAAAAAOACgAAAAAAAAAAAAPACgAAAAAAAAAAAAQACgAAAABAAAAAAARACgAAAAAAAAAAAASACgAAAABAAAAAAATACgAAAAAAAAAAAAUACgAAAAAAAAAAAAVACgAAAAAAAAAAAAWACgAAAAAAAAAAAAXACgAAAAAAAAAAAAYACgAAAABAAAAAAAZACgAAAABAAAAAAAaACgAAAABAAAAAAAbACgAAAABAAAAAAAcACgAAAAAAAAAAAAdACgAAAAAAAAAAAAeACgAAAAAAAAAAAAfACgAAAABAAAAAAAgACgAAAAAAAAAAAAhACgAAAAAAAAAAAAiACgAAAAAAAAAAAAjACgAAAABAAAAAAAkACgAAAAAAAAAAAAlACgAAAAAAAAAAAAmACgAAAAAAAAAAAAnACgAAAAAAAAAAAAoACgAAAAAAAAAAAApACgAAAABAAAAAAAqACgAAAABAAAAAAArACgAAAABAAAAAAAsACgAAAABAAAAAAAtACgAAAABAAAAAAAuACgAAAAAAAAAAAAvACgAAAABAAAAAAAwACgAAAABAAAAAAAxACgAAAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAACgAAQAAAAAAAAABACgAAQAAAAAAAAACACgAAQABAAAAAAADACgAAQAAAAAAAAAEACgAAQAAAAAAAAAFACgAAQABAAAAAAAGACgAAQAAAAAAAAAHACgAAQABAAAAAAAIACgAAQABAAAAAAAJACgAAQAAAAAAAAAKACgAAQABAAAAAAALACgAAQAAAAAAAAAMACgAAQABAAAAAAANACgAAQABAAAAAAAOACgAAQAAAAAAAAAPACgAAQAAAAAAAAAQACgAAQAAAAAAAAARACgAAQAAAAAAAAASACgAAQAAAAAAAAATACgAAQABAAAAAAAUACgAAQAAAAAAAAAVACgAAQAAAAAAAAAWACgAAQAAAAAAAAAXACgAAQABAAAAAAAYACgAAQAAAAAAAAAZACgAAQAAAAAAAAAaACgAAQABAAAAAAAbACgAAQAAAAAAAAAcACgAAQAAAAAAAAAdACgAAQAAAAAAAAAeACgAAQAAAAAAAAAfACgAAQABAAAAAAAgACgAAQAAAAAAAAAhACgAAQAAAAAAAAAiACgAAQAAAAAAAAAAACkAAQACAAEAAAABACkAAQACAAEAAAACACkAAQAAAAEAAAADACkAAQAAAAEAAAAEACkAAQACAAEAAAAFACkAAQABAAEAAAAGACkAAQAAAAEAAAAHACkAAQABAAEAAAAIACkAAQACAAEAAAAJACkAAQABAAEAAAAKACkAAQABAAEAAAALACkAAQACAAEAAAAMACkAAQAAAAEAAAANACkAAQAAAAEAAAAOACkAAQAAAAEAAAAPACkAAQAAAAEAAAAQACkAAQABAAEAAAARACkAAQACAAEAAAASACkAAQAAAAEAAAATACkAAQAAAAEAAAAUACkAAQABAAEAAAAVACkAAQAAAAEAAAAWACkAAQACAAEAAAAXACkAAQAAAAEAAAAgACkAAQAAAAEAAAAhACkAAQABAAEAAAAiACkAAQAAAAEAAAAfACkAAQACAAEAAAAeACkAAQAAAAEAAAAdACkAAQABAAEAAAAcACkAAQACAAEAAAAbACkAAQAAAAEAAAAaACkAAQABAAEAAAAZACkAAQAAAAEAAAAYACkAAQAAAAEAAAA=")
 tile_set = SubResource("TileSet_rus8k")
 
 [connection signal="pressed" from="CanvasLayer/pause_menu/VBoxContainer/Button" to="." method="_resume"]

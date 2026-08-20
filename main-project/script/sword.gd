@@ -1,7 +1,7 @@
 extends Area2D
 
 var player = CharacterBody2D
-var damage: int = 10
+var damage: int = 31
 
 @export var sword_animations: AnimationPlayer
 

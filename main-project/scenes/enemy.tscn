@@ -48,3 +48,5 @@ max_value = 3.0
 step = 1.0
 value = 3.0
 show_percentage = false
+
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

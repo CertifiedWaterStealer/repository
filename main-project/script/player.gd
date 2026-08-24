@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 var sword_timer_is_ready: bool = true
-var sword_animation = AnimationPlayer
 
 var dash_cooldown_timer_is_ready: bool = true 
 
@@ -23,17 +22,15 @@ var double_jump: bool = true
 
 @export var stamina_ui: ProgressBar
 @export var stamina_delay: Timer
-@export var character: Node2D
-@export var sword: Area2D
 @export var m1_timer: Timer
 @export var dash_timer: Timer
 @export var dash_cooldown: Timer
+@export var animated_sprite: AnimatedSprite2D
 
 func _ready():
 	if not stamina_ui == null:
 		stamina_ui.max_value = stamina
 		stamina_ui.value = stamina
-		sword_animation = sword.sword_animations
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -58,16 +55,18 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("a_key", "d_key")
 	if direction:
 		velocity.x = direction * speed
-		character.scale.x = -1 if direction < 0 else 1
+		_walk()
+		animated_sprite.flip_h = direction < 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
+		_idle()
 	
 	if Input.is_action_just_pressed("dash") and dash_cooldown_timer_is_ready:
 		dash_cooldown_timer_is_ready = false
 		_dash()
 		dash_cooldown.start()
 
-	if Input.is_action_pressed("shift"): 
+	if Input.is_action_pressed("shift"):
 		speed = SPRINT_SPEED
 		stamina_ui.value = stamina
 		if velocity.x != ZERO_VELOCITY:
@@ -102,7 +101,7 @@ func _sword_m1_timer_timeout() -> void:
 	sword_timer_is_ready = true
 
 func _m1() -> void:
-	sword_animation.play("m1_animation")
+	pass
 
 func _on_dash_runtime_timeout() -> void:
 	speed = WALK_SPEED
@@ -113,3 +112,12 @@ func _on_dash_cooldown_timer_timeout() -> void:
 func _dash() -> void:
 	dash_timer.start()
 	speed = DASH_SPEED
+
+func _walk():
+	animated_sprite.play("walk")
+
+func _idle():
+	animated_sprite.play("idle")
+
+func _sprint():
+	animated_sprite.play("sprint")

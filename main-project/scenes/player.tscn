@@ -1,68 +1,168 @@
 [gd_scene format=3 uid="uid://dilf4hpvg5ff8"]
 
 [ext_resource type="Script" uid="uid://nylu7aocl47" path="res://script/player.gd" id="1_3vyb7"]
-[ext_resource type="PackedScene" uid="uid://bmxq1sage2ypn" path="res://scenes/sword.tscn" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://bshobf08185h2" path="res://assets/animations/main_character_idle/frame0001.png" id="3_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://dooslptw2kj77" path="res://assets/animations/main_character_idle/frame0000.png" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://c53kfoetpuc1f" path="res://assets/animations/main_character_idle/frame0002.png" id="4_oprun"]
+[ext_resource type="Texture2D" uid="uid://dxf2ehnkivhqk" path="res://assets/animations/main_character_idle/frame0003.png" id="5_a8ls1"]
+[ext_resource type="Texture2D" uid="uid://d24oac8bpgvwd" path="res://assets/animations/main_character_idle/frame0004.png" id="6_qfm1y"]
+[ext_resource type="Texture2D" uid="uid://c7a4rxep4cohp" path="res://assets/animations/main_character_idle/frame0005.png" id="7_fulsm"]
+[ext_resource type="Texture2D" uid="uid://k5dpdpgjwg3v" path="res://assets/animations/main_character_idle/frame0006.png" id="8_4r5pv"]
+[ext_resource type="Texture2D" uid="uid://dm2hliwq73the" path="res://assets/animations/main_character_idle/frame0007.png" id="9_60mlk"]
+[ext_resource type="Texture2D" uid="uid://x0k5i0dqbhro" path="res://assets/animations/main_character_idle/frame0008.png" id="10_i4ail"]
+[ext_resource type="Texture2D" uid="uid://cdvmjlxjgbuil" path="res://assets/animations/main_character_idle/frame0009.png" id="11_a38lo"]
+[ext_resource type="Texture2D" uid="uid://belqkld4eblgk" path="res://assets/animations/main_character_idle/frame0010.png" id="12_4ni07"]
+[ext_resource type="Texture2D" uid="uid://cx8r14ufahgrx" path="res://assets/animations/main_character_idle/frame0011.png" id="13_l71n6"]
+[ext_resource type="Texture2D" uid="uid://cxcostlaj5nl8" path="res://assets/animations/main_character_walk_and_sprint/frame0001.png" id="14_4r5pv"]
+[ext_resource type="Texture2D" uid="uid://daj8tbwhc5kxn" path="res://assets/animations/main_character_walk_and_sprint/frame0002.png" id="15_60mlk"]
+[ext_resource type="Texture2D" uid="uid://bb0nisprp8okr" path="res://assets/animations/main_character_walk_and_sprint/frame0003.png" id="16_i4ail"]
+[ext_resource type="Texture2D" uid="uid://ddxalwf1kgsdf" path="res://assets/animations/main_character_walk_and_sprint/frame0004.png" id="17_a38lo"]
+[ext_resource type="Texture2D" uid="uid://hve2qqad7a8j" path="res://assets/animations/main_character_walk_and_sprint/frame0005.png" id="18_4ni07"]
+[ext_resource type="Texture2D" uid="uid://dqgad8x4j1par" path="res://assets/animations/main_character_walk_and_sprint/frame0006.png" id="19_l71n6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
-size = Vector2(163, 149)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1ej7"]
+radius = 49.0
+height = 304.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("stamina_delay", "character", "sword", "m1_timer", "dash_timer", "dash_cooldown")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ke2ow"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_qhqgy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f1ej7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_oprun")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_a8ls1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qfm1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fulsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_4r5pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_60mlk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_i4ail")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_a38lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_4ni07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_l71n6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_4r5pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_60mlk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_i4ail")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_a38lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_4ni07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_l71n6")
+}],
+"loop": true,
+"name": &"sprint",
+"speed": 18.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_4r5pv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_60mlk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_i4ail")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_a38lo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_4ni07")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_l71n6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ej7"]
+size = Vector2(119.000015, 117.5)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("stamina_delay", "m1_timer", "dash_timer", "dash_cooldown", "animated_sprite")]
 script = ExtResource("1_3vyb7")
-stamina_delay = NodePath("Sprite2D/Timer")
-character = NodePath("Sprite2D/Node2D")
-sword = NodePath("Sprite2D/Node2D/Area2D")
-m1_timer = NodePath("Sprite2D/Node2D/Area2D/Timer")
-dash_timer = NodePath("Sprite2D/dash_timer")
-dash_cooldown = NodePath("Sprite2D/dash_cooldown_timer")
+stamina_delay = NodePath("Timer")
+m1_timer = NodePath("AnimatedSprite2D/Area2D/Timer")
+dash_timer = NodePath("dash_timer")
+dash_cooldown = NodePath("dash_cooldown_timer")
+animated_sprite = NodePath("AnimatedSprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1437594607]
-position = Vector2(-299, -359)
-scale = Vector2(4.7500005, 4.515)
-texture = ExtResource("3_qhqgy")
-script = ExtResource("1_3vyb7")
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1536569633]
+position = Vector2(170, 13)
+zoom = Vector2(3, 3)
 
-[node name="Node2D" type="Node2D" parent="Sprite2D" unique_id=216424548]
-position = Vector2(62.947365, 79.51273)
-scale = Vector2(0.2105263, 0.22148395)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1497009577]
+shape = SubResource("CapsuleShape2D_f1ej7")
 
-[node name="Area2D" parent="Sprite2D/Node2D" unique_id=8972587 instance=ExtResource("2_g2els")]
-z_index = 1
-position = Vector2(83, 32)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1014235547]
+position = Vector2(0, -527)
+scale = Vector2(7.456249, 6.8375006)
+sprite_frames = SubResource("SpriteFrames_ke2ow")
+animation = &"sprint"
 
-[node name="Timer" type="Timer" parent="Sprite2D/Node2D/Area2D" unique_id=868863543]
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=1293322132]
+scale = Vector2(0.99999994, 1)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=537626563]
+position = Vector2(22.799667, 77.07494)
+scale = Vector2(0.18273185, 0.18264839)
+shape = SubResource("RectangleShape2D_f1ej7")
+disabled = true
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D/Area2D" unique_id=868863543]
 wait_time = 2.0
 one_shot = true
 
-[node name="ColorRect" type="ColorRect" parent="Sprite2D" unique_id=1994605909]
-offset_left = 46.105263
-offset_top = 62.236984
-offset_right = 209.10526
-offset_bottom = 211.23698
-color = Color(0.691728, 0.9772342, 0.8292426, 1)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D" unique_id=1564119284]
-position = Vector2(63.263153, 78.73754)
-scale = Vector2(0.2105263, 0.22148395)
-shape = SubResource("RectangleShape2D_3vyb7")
-
-[node name="Camera2D" type="Camera2D" parent="Sprite2D" unique_id=1536569633]
-position = Vector2(62.947365, 79.51273)
-scale = Vector2(0.2105263, 0.22148395)
-zoom = Vector2(3, 3)
-
-[node name="Timer" type="Timer" parent="Sprite2D" unique_id=1868896950]
+[node name="Timer" type="Timer" parent="." unique_id=1868896950]
 one_shot = true
 
-[node name="dash_timer" type="Timer" parent="Sprite2D" unique_id=465171646]
+[node name="dash_timer" type="Timer" parent="." unique_id=465171646]
 wait_time = 0.3
 one_shot = true
 
-[node name="dash_cooldown_timer" type="Timer" parent="Sprite2D" unique_id=130499142]
+[node name="dash_cooldown_timer" type="Timer" parent="." unique_id=130499142]
 wait_time = 0.7
 one_shot = true
 
-[connection signal="timeout" from="Sprite2D/Node2D/Area2D/Timer" to="." method="_sword_m1_timer_timeout"]
-[connection signal="timeout" from="Sprite2D/Timer" to="." method="_stamina_delay_timeout"]
-[connection signal="timeout" from="Sprite2D/dash_timer" to="." method="_on_dash_runtime_timeout"]
-[connection signal="timeout" from="Sprite2D/dash_cooldown_timer" to="." method="_on_dash_cooldown_timer_timeout"]
+[connection signal="timeout" from="AnimatedSprite2D/Area2D/Timer" to="." method="_sword_m1_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_stamina_delay_timeout"]
+[connection signal="timeout" from="dash_timer" to="." method="_on_dash_runtime_timeout"]
+[connection signal="timeout" from="dash_cooldown_timer" to="." method="_on_dash_cooldown_timer_timeout"]

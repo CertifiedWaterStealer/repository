@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var sword_timer_is_ready: bool = true
+var is_attacking = false
 
 var dash_cooldown_timer_is_ready: bool = true 
 
@@ -53,13 +53,14 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("a_key", "d_key")
-	if direction:
-		velocity.x = direction * speed
-		_walk()
-		animated_sprite.flip_h = direction < 0
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		_idle()
+	if not is_attacking:
+		if direction:
+			velocity.x = direction * speed
+			animated_sprite.play("walk")
+			animated_sprite.flip_h = direction < 0
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
+			animated_sprite.play("idle")
 	
 	if Input.is_action_just_pressed("dash") and dash_cooldown_timer_is_ready:
 		dash_cooldown_timer_is_ready = false
@@ -87,21 +88,18 @@ func _physics_process(delta: float) -> void:
 		speed = WALK_SPEED
 		stamina_delay.start()
 	
-	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and sword_timer_is_ready:
-		sword_timer_is_ready = false
-		_m1()
-		m1_timer.start()
-		
+	if Input.is_action_just_pressed("e_key") and not is_attacking:
+		is_attacking = true
+		animated_sprite.play("slash")
+		return
+	
+	if is_attacking:
+		return
+	
 	move_and_slide()
 
 func _stamina_delay_timeout() -> void:
 	stamina_is_ready = true
-
-func _sword_m1_timer_timeout() -> void:
-	sword_timer_is_ready = true
-
-func _m1() -> void:
-	pass
 
 func _on_dash_runtime_timeout() -> void:
 	speed = WALK_SPEED
@@ -113,11 +111,9 @@ func _dash() -> void:
 	dash_timer.start()
 	speed = DASH_SPEED
 
-func _walk():
-	animated_sprite.play("walk")
-
-func _idle():
-	animated_sprite.play("idle")
-
 func _sprint():
 	animated_sprite.play("sprint")
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	if animated_sprite.animation == "slash":
+		is_attacking = false

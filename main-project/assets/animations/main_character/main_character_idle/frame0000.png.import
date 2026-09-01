@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dqgad8x4j1par"
-path="res://.godot/imported/frame0006.png-dfa4eaccadfdd68957ea1758482dc731.ctex"
+uid="uid://dooslptw2kj77"
+path="res://.godot/imported/frame0000.png-d37e4cf52107ab07bba67f594722dbf4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animations/main_character_walk_and_sprint/frame0006.png"
-dest_files=["res://.godot/imported/frame0006.png-dfa4eaccadfdd68957ea1758482dc731.ctex"]
+source_file="res://assets/animations/main_character/main_character_idle/frame0000.png"
+dest_files=["res://.godot/imported/frame0000.png-d37e4cf52107ab07bba67f594722dbf4.ctex"]
 
 [params]
 

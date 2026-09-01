@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cx8r14ufahgrx"
-path="res://.godot/imported/frame0011.png-98fb9e5470f857ac6e80bc2b43b631aa.ctex"
+uid="uid://boxxkhudmsepj"
+path="res://.godot/imported/frame0000.png-b2930811383433367e8d8701216780ed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animations/main_character_idle/frame0011.png"
-dest_files=["res://.godot/imported/frame0011.png-98fb9e5470f857ac6e80bc2b43b631aa.ctex"]
+source_file="res://assets/animations/main_character/main_character_slash_animation/frame0000.png"
+dest_files=["res://.godot/imported/frame0000.png-b2930811383433367e8d8701216780ed.ctex"]
 
 [params]
 

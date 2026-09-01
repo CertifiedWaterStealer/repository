@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5knaepjxnhl5"
-path="res://.godot/imported/temple_tilemap.png-de0d2990905a2d57826919ceb801d072.ctex"
+uid="uid://dxf2ehnkivhqk"
+path="res://.godot/imported/frame0003.png-52221dd2477becd403369825d454be44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/temple_tilemap.png"
-dest_files=["res://.godot/imported/temple_tilemap.png-de0d2990905a2d57826919ceb801d072.ctex"]
+source_file="res://assets/animations/main_character/main_character_idle/frame0003.png"
+dest_files=["res://.godot/imported/frame0003.png-52221dd2477becd403369825d454be44.ctex"]
 
 [params]
 

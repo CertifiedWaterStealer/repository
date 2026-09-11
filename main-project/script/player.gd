@@ -4,6 +4,8 @@ var is_attacking: bool = false
 
 var dash_cooldown_timer_is_ready: bool = true 
 
+var movement = Vector2()
+
 var stamina: int = 200
 const STAMINA_DRAIN: int = 2
 const STAMINA_MAX_VALUE: int = 0
@@ -11,7 +13,7 @@ const STAMINA_LOWEST_VALUE: int = 0
 const STAMINA_REGEN: int = 2
 var stamina_is_ready: bool = true
 
-var speed = 300.0
+const SPEED = 300.0
 const SPRINT_SPEED: float = 400.0
 const WALK_SPEED: float = 300.0
 const DASH_SPEED: float = 600.0
@@ -33,7 +35,13 @@ func _ready():
 		stamina_ui.value = stamina
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
+	movement = Input.get_axis("a_key", "d_key")
+	
+	if movement:
+		velocity.x = movement * SPEED
+	else:
+		velocity.x = lerp(velocity.x, 0.0, 0.2)
+	
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	elif is_on_floor() and not double_jump:
@@ -49,47 +57,7 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("w_key") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("a_key", "d_key")
-	if not is_attacking:
-		if direction:
-			velocity.x = direction * speed
-			animated_sprite.flip_h = direction < 0
-			animated_sprite.play("walk")
-		else:
-			velocity.x = move_toward(velocity.x, 0, speed)
-			animated_sprite.play("idle")
-			
-	if not is_attacking:
-		if Input.is_action_just_pressed("dash") and dash_cooldown_timer_is_ready:
-			dash_cooldown_timer_is_ready = false
-			_dash()
-			dash_cooldown.start()
-			
-	if not is_attacking:
-		if Input.is_action_pressed("shift"):
-			speed = SPRINT_SPEED
-			stamina_ui.value = stamina
-			if velocity.x != ZERO_VELOCITY:
-				stamina_is_ready = false
-				stamina -= STAMINA_DRAIN
-				if stamina < 0:
-					stamina = STAMINA_MAX_VALUE
-					if stamina == STAMINA_LOWEST_VALUE:
-						speed = WALK_SPEED
-		elif stamina_is_ready == true:
-			if stamina < 200:
-				stamina += STAMINA_REGEN
-				stamina_ui.value = stamina
-				if stamina > 200:
-					stamina = STAMINA_MAX_VALUE
-					
-	if not is_attacking:
-		if Input.is_action_just_released("shift"):
-			speed = WALK_SPEED
-			stamina_delay.start()
+
 	
 	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and not is_attacking:
 		_slash()
@@ -107,15 +75,8 @@ func _slash():
 func _stamina_delay_timeout() -> void:
 	stamina_is_ready = true
 
-func _on_dash_runtime_timeout() -> void:
-	speed = WALK_SPEED
-
 func _on_dash_cooldown_timer_timeout() -> void:
 	dash_cooldown_timer_is_ready = true
-
-func _dash() -> void:
-	dash_timer.start()
-	speed = DASH_SPEED
 
 func _sprint():
 	animated_sprite.play("sprint")

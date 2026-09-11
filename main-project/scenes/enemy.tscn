@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://52r615dsn1nv" path="res://script/enemy.gd" id="1_7p1mj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7xaro"]
-radius = 42.0
+radius = 45.54617
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7k104"]
-radius = 43.88029
+radius = 50.59462
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7p1mj"]
 bg_color = Color(1, 0.34585613, 0.25231382, 1)

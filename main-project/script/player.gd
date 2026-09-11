@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var is_attacking = false
+var is_attacking: bool = false
 
 var dash_cooldown_timer_is_ready: bool = true 
 
@@ -53,13 +53,14 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("a_key", "d_key")
-	if not is_attacking:
-		if direction:
-			velocity.x = direction * speed
+	if direction:
+		velocity.x = direction * speed
+		animated_sprite.flip_h = direction < 0
+		if not is_attacking:
 			animated_sprite.play("walk")
-			animated_sprite.flip_h = direction < 0
-		else:
-			velocity.x = move_toward(velocity.x, 0, speed)
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		if not is_attacking:
 			animated_sprite.play("idle")
 	
 	if Input.is_action_just_pressed("dash") and dash_cooldown_timer_is_ready:
@@ -88,15 +89,14 @@ func _physics_process(delta: float) -> void:
 		speed = WALK_SPEED
 		stamina_delay.start()
 	
-	if Input.is_action_just_pressed("e_key") and not is_attacking:
-		is_attacking = true
-		animated_sprite.play("slash")
-		return
-	
-	if is_attacking:
-		return
+	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and not is_attacking:
+		_slash()
 	
 	move_and_slide()
+
+func _slash():
+	is_attacking = true
+	animated_sprite.play("slash")
 
 func _stamina_delay_timeout() -> void:
 	stamina_is_ready = true
@@ -117,3 +117,7 @@ func _sprint():
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "slash":
 		is_attacking = false
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	if is_attacking and body.is_in_group("enemy"):
+		print("hit")

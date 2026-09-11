@@ -15,6 +15,7 @@ var overlapping: bool = true
 func _ready() -> void:
 	health_ui.max_value = health
 	health_ui.value = health
+	add_to_group("enemy")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

@@ -53,41 +53,43 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("a_key", "d_key")
-	if direction:
-		velocity.x = direction * speed
-		animated_sprite.flip_h = direction < 0
-		if not is_attacking:
+	if not is_attacking:
+		if direction:
+			velocity.x = direction * speed
+			animated_sprite.flip_h = direction < 0
 			animated_sprite.play("walk")
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-		if not is_attacking:
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
 			animated_sprite.play("idle")
-	
-	if Input.is_action_just_pressed("dash") and dash_cooldown_timer_is_ready:
-		dash_cooldown_timer_is_ready = false
-		_dash()
-		dash_cooldown.start()
-
-	if Input.is_action_pressed("shift"):
-		speed = SPRINT_SPEED
-		stamina_ui.value = stamina
-		if velocity.x != ZERO_VELOCITY:
-			stamina_is_ready = false
-			stamina -= STAMINA_DRAIN
-			if stamina < 0:
-				stamina = STAMINA_MAX_VALUE
-				if stamina == STAMINA_LOWEST_VALUE:
-					speed = WALK_SPEED
-	elif stamina_is_ready == true:
-		if stamina < 200:
-			stamina += STAMINA_REGEN
+			
+	if not is_attacking:
+		if Input.is_action_just_pressed("dash") and dash_cooldown_timer_is_ready:
+			dash_cooldown_timer_is_ready = false
+			_dash()
+			dash_cooldown.start()
+			
+	if not is_attacking:
+		if Input.is_action_pressed("shift"):
+			speed = SPRINT_SPEED
 			stamina_ui.value = stamina
-			if stamina > 200:
-				stamina = STAMINA_MAX_VALUE
-				
-	if Input.is_action_just_released("shift"):
-		speed = WALK_SPEED
-		stamina_delay.start()
+			if velocity.x != ZERO_VELOCITY:
+				stamina_is_ready = false
+				stamina -= STAMINA_DRAIN
+				if stamina < 0:
+					stamina = STAMINA_MAX_VALUE
+					if stamina == STAMINA_LOWEST_VALUE:
+						speed = WALK_SPEED
+		elif stamina_is_ready == true:
+			if stamina < 200:
+				stamina += STAMINA_REGEN
+				stamina_ui.value = stamina
+				if stamina > 200:
+					stamina = STAMINA_MAX_VALUE
+					
+	if not is_attacking:
+		if Input.is_action_just_released("shift"):
+			speed = WALK_SPEED
+			stamina_delay.start()
 	
 	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and not is_attacking:
 		_slash()
@@ -95,6 +97,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _slash():
+	var overlapping_collision_shapes = $AnimatedSprite2D/Area2D.get_overlapping_areas()
+	for area in overlapping_collision_shapes:
+		var parent = area.get_parent()
+		parent.take_damage()
 	is_attacking = true
 	animated_sprite.play("slash")
 

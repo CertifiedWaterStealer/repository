@@ -20,7 +20,11 @@ const DASH_SPEED: float = 600.0
 
 const ZERO_VELOCITY: float = 0
 const JUMP_VELOCITY: float = -325.0
-var double_jump: bool = true 
+var double_jump: bool = true
+
+const GRAVITY = 500
+
+const JUMP_SPEED = 200
 
 @export var stamina_ui: ProgressBar
 @export var stamina_delay: Timer
@@ -35,34 +39,34 @@ func _ready():
 		stamina_ui.value = stamina
 
 func _physics_process(delta: float) -> void:
+	velocity.y += GRAVITY * delta
+	_horizontal_movement()
+	_animations()
+	_animation_flip()
+	move_and_slide()
+	
+func _horizontal_movement():	
 	movement = Input.get_axis("a_key", "d_key")
 	
 	if movement:
 		velocity.x = movement * SPEED
 	else:
 		velocity.x = lerp(velocity.x, 0.0, 0.2)
-	
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	elif is_on_floor() and not double_jump:
-		double_jump = true
-		
-	if Input.is_action_just_pressed("w_key"): 
-		if is_on_floor():
-			velocity.y = JUMP_VELOCITY
-		elif double_jump:
-			velocity.y = JUMP_VELOCITY
-			double_jump = false
-			
-	# Handle jump.
-	if Input.is_action_just_pressed("w_key") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
-	
 	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and not is_attacking:
 		_slash()
-	
-	move_and_slide()
+
+func _animations():
+	if velocity.x != 0: 
+		animated_sprite.play("walk")
+	if velocity.x == 0:
+		animated_sprite.play("idle")
+
+func _animation_flip():
+	if velocity.x > 0:
+		animated_sprite.flip_h = false
+	if velocity.x < 0:
+		animated_sprite.flip_h = true
 
 func _slash():
 	var overlapping_collision_shapes = $AnimatedSprite2D/Area2D.get_overlapping_areas()
@@ -72,19 +76,6 @@ func _slash():
 	is_attacking = true
 	animated_sprite.play("slash")
 
-func _stamina_delay_timeout() -> void:
-	stamina_is_ready = true
-
-func _on_dash_cooldown_timer_timeout() -> void:
-	dash_cooldown_timer_is_ready = true
-
-func _sprint():
-	animated_sprite.play("sprint")
-
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite.animation == "slash":
 		is_attacking = false
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if is_attacking and body.is_in_group("enemy"):
-		print("hit")

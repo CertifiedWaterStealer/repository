@@ -18,13 +18,11 @@ const SPRINT_SPEED: float = 400.0
 const WALK_SPEED: float = 300.0
 const DASH_SPEED: float = 600.0
 
-const ZERO_VELOCITY: float = 0
-const JUMP_VELOCITY: float = -325.0
-var double_jump: bool = true
+const GRAVITY = 500.0
 
-const GRAVITY = 500
-
-const JUMP_SPEED = 200
+const JUMP_SPEED = 200.0
+const JUMP_ACCELERATION = 400.0
+var total_jumps = 2 
 
 @export var stamina_ui: ProgressBar
 @export var stamina_delay: Timer
@@ -41,13 +39,13 @@ func _ready():
 func _physics_process(delta: float) -> void:
 	velocity.y += GRAVITY * delta
 	_horizontal_movement()
+	_jump()
 	_animations()
 	_animation_flip()
 	move_and_slide()
 	
-func _horizontal_movement():	
+func _horizontal_movement():
 	movement = Input.get_axis("a_key", "d_key")
-	
 	if movement:
 		velocity.x = movement * SPEED
 	else:
@@ -55,6 +53,22 @@ func _horizontal_movement():
 
 	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and not is_attacking:
 		_slash()
+
+func _jump():
+	if is_on_floor():
+		total_jumps = 2
+		if Input.is_action_just_pressed("w_key"):
+			total_jumps -= 1 
+			velocity.y -= lerp(JUMP_SPEED, JUMP_ACCELERATION, 0.1)
+	
+	if not is_on_floor():
+		if total_jumps > 0:
+			if Input.is_action_just_pressed("w_key"):
+				total_jumps -= 1
+				velocity.y -= lerp(JUMP_SPEED, JUMP_ACCELERATION, 0.2)
+	else:
+		return
+			
 
 func _animations():
 	if velocity.x != 0: 

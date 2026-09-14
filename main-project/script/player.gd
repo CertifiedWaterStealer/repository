@@ -18,11 +18,11 @@ const SPRINT_SPEED: float = 400.0
 const WALK_SPEED: float = 300.0
 const DASH_SPEED: float = 600.0
 
-const GRAVITY = 500.0
+const GRAVITY: float = 600.0
 
-const JUMP_SPEED = 200.0
-const JUMP_ACCELERATION = 400.0
-var total_jumps = 2 
+const JUMP_SPEED: float = 170.0
+const JUMP_ACCELERATION: float = 400.0
+var total_jumps: int = 2 
 
 @export var stamina_ui: ProgressBar
 @export var stamina_delay: Timer
@@ -36,14 +36,20 @@ func _ready():
 		stamina_ui.max_value = stamina
 		stamina_ui.value = stamina
 
+# This runs repeatidly, handling the physics and physics related functions. 'delta' 
+# is the time since the previous frame. I multiply my 'GRAVITY' constant with my 
+# 'delta' perameter. 'velocity.y' is a 'Vector2' in the y axis. So summarised, 
+# I am multiplying my 'GRAVITY' constant with my delta parameter, then plusing this 
+# with 'velocity.y'. 
 func _physics_process(delta: float) -> void:
 	velocity.y += GRAVITY * delta
 	_horizontal_movement()
 	_jump()
+	_wall_slide()
 	_animations()
 	_animation_flip()
 	move_and_slide()
-	
+
 func _horizontal_movement():
 	movement = Input.get_axis("a_key", "d_key")
 	if movement:
@@ -54,21 +60,28 @@ func _horizontal_movement():
 	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and not is_attacking:
 		_slash()
 
+# Handles the character's jump. This first section checks if the player is on the floor.
+# If they are, then the player is capable of jumping. 
 func _jump():
 	if is_on_floor():
 		total_jumps = 2
 		if Input.is_action_just_pressed("w_key"):
 			total_jumps -= 1 
 			velocity.y -= lerp(JUMP_SPEED, JUMP_ACCELERATION, 0.1)
-	
+
+# This second part of the jump function, handles the player's double jumpimg ability.
+# If the player is not on the floor, then they can jump.  
 	if not is_on_floor():
 		if total_jumps > 0:
 			if Input.is_action_just_pressed("w_key"):
 				total_jumps -= 1
-				velocity.y -= lerp(JUMP_SPEED, JUMP_ACCELERATION, 0.2)
+				velocity.y -= lerp(JUMP_SPEED, JUMP_ACCELERATION, 0.1)
 	else:
 		return
-			
+
+func _wall_slide():
+	if is_on_wall_only():
+		velocity.y = 10 
 
 func _animations():
 	if velocity.x != 0: 

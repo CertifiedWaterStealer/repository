@@ -160,6 +160,7 @@ height = 304.0
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("animated_sprite")]
 z_index = 3
+safe_margin = 0.15
 script = ExtResource("1_3vyb7")
 animated_sprite = NodePath("AnimatedSprite2D")
 

@@ -24,12 +24,19 @@ const JUMP_SPEED: float = 170.0
 const JUMP_ACCELERATION: float = 400.0
 var total_jumps: int = 2 
 
+var wall_jump_force_x = 200.0
+var wall_jump_force_y = -200.0
+var is_wall_jumping: bool = false
+
 @export var stamina_ui: ProgressBar
 @export var stamina_delay: Timer
 @export var m1_timer: Timer
 @export var dash_timer: Timer
 @export var dash_cooldown: Timer
 @export var animated_sprite: AnimatedSprite2D
+
+@onready var left_raycast: RayCast2D = $Node2D/RayCast2D
+@onready var right_raycast: RayCast2D = $Node2D/RayCast2D2
 
 func _ready():
 	if not stamina_ui == null:
@@ -50,12 +57,15 @@ func _physics_process(delta: float) -> void:
 	_animation_flip()
 	move_and_slide()
 
+# gets the input direction and handle the movement/deceleration. The 'lerp' function is
+# used to create a smooth transition between the two values overtime. 
 func _horizontal_movement():
-	movement = Input.get_axis("a_key", "d_key")
-	if movement:
-		velocity.x = movement * SPEED
-	else:
-		velocity.x = lerp(velocity.x, 0.0, 0.2)
+	if is_wall_jumping == false:
+		movement = Input.get_axis("a_key", "d_key")
+		if movement:
+			velocity.x = movement * SPEED
+		else:
+			velocity.x = lerp(velocity.x, 0.0, 0.2)
 
 	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and not is_attacking:
 		_slash()
@@ -69,8 +79,9 @@ func _jump():
 			total_jumps -= 1 
 			velocity.y -= lerp(JUMP_SPEED, JUMP_ACCELERATION, 0.1)
 
-# This second part of the jump function, handles the player's double jumpimg ability.
-# If the player is not on the floor, then they can jump.  
+# This second part of the jump function, handles the player's double jumping ability.
+# If the player is not on the floor, then they can jump. Then the 'return' will bring
+# it back to the first line in the function.
 	if not is_on_floor():
 		if total_jumps > 0:
 			if Input.is_action_just_pressed("w_key"):
@@ -78,20 +89,49 @@ func _jump():
 				velocity.y -= lerp(JUMP_SPEED, JUMP_ACCELERATION, 0.1)
 	else:
 		return
-
+		
+# This automatically sets the player's 'velocity.y' to 10, 'if' they are touching a wall
+# for 'velocity.y', if the number is positive, that means there going down. When it is
+# negative, they will move upwards.
 func _wall_slide():
 	if is_on_wall_only():
-		velocity.y = 10 
+		velocity.y = 10
+		if Input.is_action_just_pressed("w_key"):
+			if left_raycast.is_colliding():
+				total_jumps = 1
+				velocity = Vector2(wall_jump_force_x, wall_jump_force_y) 
+				_inputting_wall_jump()
+			if right_raycast.is_colliding():
+				total_jumps = 1
+				velocity = Vector2(-wall_jump_force_x, wall_jump_force_y)
+				_inputting_wall_jump()
 
+func _inputting_wall_jump():
+	is_wall_jumping = true
+	await get_tree().create_timer(0.2).timeout
+	is_wall_jumping = false
+
+# Made to play the animation when the player's 'velocity.x' is not equal to zero, or
+# when the velocity is equal to zero. Fror 'velocity.x' the numbers are oppisite to
+# 'velocity.y'.  
 func _animations():
+	# Basically means if the player is moving, play the 'walk' animation.
 	if velocity.x != 0: 
 		animated_sprite.play("walk")
+	# Basically means when the player is standing still, the 'idle' animation will play. 
 	if velocity.x == 0:
 		animated_sprite.play("idle")
 
+# This function decides whether or not to flip the character sprite, when the
+# 'velocity.x' is less than or more than 0.
 func _animation_flip():
+	# Basically means, if the player is moving to the right 'animated sprite.flip h'
+	# will be equal to 'false' The reason I did this is because the player's base
+	# animations are gonna be set to it facing the right. 
 	if velocity.x > 0:
 		animated_sprite.flip_h = false
+	# So if the player is moving to the left, the 'flip h' will be set to 'true'
+	# as a result flipping the character's sprite.
 	if velocity.x < 0:
 		animated_sprite.flip_h = true
 

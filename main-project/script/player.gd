@@ -6,17 +6,15 @@ var dash_cooldown_timer_is_ready: bool = true
 
 var movement = Vector2()
 
-var stamina: int = 200
-const STAMINA_DRAIN: int = 2
-const STAMINA_MAX_VALUE: int = 0
-const STAMINA_LOWEST_VALUE: int = 0
-const STAMINA_REGEN: int = 2
-var stamina_is_ready: bool = true
-
 const SPEED = 300.0
 const SPRINT_SPEED: float = 400.0
 const WALK_SPEED: float = 300.0
-const DASH_SPEED: float = 600.0
+
+const DASH_SPEED: float = 450.0
+var dash_key_pressed = 0
+var is_dashing = false 
+var facing_right = true
+var total_dashes = 1
 
 const GRAVITY: float = 600.0
 
@@ -28,20 +26,13 @@ var wall_jump_force_x = 200.0
 var wall_jump_force_y = -200.0
 var is_wall_jumping: bool = false
 
-@export var stamina_ui: ProgressBar
-@export var stamina_delay: Timer
 @export var m1_timer: Timer
-@export var dash_timer: Timer
-@export var dash_cooldown: Timer
 @export var animated_sprite: AnimatedSprite2D
-
 @onready var left_raycast: RayCast2D = $Node2D/RayCast2D
 @onready var right_raycast: RayCast2D = $Node2D/RayCast2D2
 
 func _ready():
-	if not stamina_ui == null:
-		stamina_ui.max_value = stamina
-		stamina_ui.value = stamina
+	pass
 
 # This runs repeatidly, handling the physics and physics related functions. 'delta' 
 # is the time since the previous frame. I multiply my 'GRAVITY' constant with my 
@@ -60,12 +51,18 @@ func _physics_process(delta: float) -> void:
 # gets the input direction and handle the movement/deceleration. The 'lerp' function is
 # used to create a smooth transition between the two values overtime. 
 func _horizontal_movement():
-	if is_wall_jumping == false:
+	if is_wall_jumping == false and is_dashing == false:
 		movement = Input.get_axis("a_key", "d_key")
+		
 		if movement:
 			velocity.x = movement * SPEED
 		else:
 			velocity.x = lerp(velocity.x, 0.0, 0.2)
+	
+	if Input.is_action_just_pressed("q_key") and dash_key_pressed == 0 and total_dashes >= 1:
+		total_dashes -= 1
+		dash_key_pressed = 1
+		_dash()
 
 	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and not is_attacking:
 		_slash()
@@ -74,6 +71,7 @@ func _horizontal_movement():
 # If they are, then the player is capable of jumping. 
 func _jump():
 	if is_on_floor():
+		total_dashes = 1
 		total_jumps = 2
 		if Input.is_action_just_pressed("w_key"):
 			total_jumps -= 1 
@@ -89,7 +87,29 @@ func _jump():
 				velocity.y -= lerp(JUMP_SPEED, JUMP_ACCELERATION, 0.1)
 	else:
 		return
-		
+
+func _dash():
+	if dash_key_pressed == 1:
+		is_dashing = true
+	else:
+		is_dashing = false
+	
+	if facing_right:
+		velocity.x = DASH_SPEED
+		_dash_cooldown()
+	if facing_right == false:
+		velocity.x = -DASH_SPEED
+		_dash_cooldown()
+
+func _dash_cooldown():
+	if is_dashing == true:
+		dash_key_pressed = 1
+		await get_tree().create_timer(0.3).timeout
+		is_dashing = false
+		dash_key_pressed = 0
+	else:
+		return
+
 # This automatically sets the player's 'velocity.y' to 10, 'if' they are touching a wall
 # for 'velocity.y', if the number is positive, that means there going down. When it is
 # negative, they will move upwards.
@@ -129,10 +149,12 @@ func _animation_flip():
 	# will be equal to 'false' The reason I did this is because the player's base
 	# animations are gonna be set to it facing the right. 
 	if velocity.x > 0:
+		facing_right = true
 		animated_sprite.flip_h = false
 	# So if the player is moving to the left, the 'flip h' will be set to 'true'
 	# as a result flipping the character's sprite.
 	if velocity.x < 0:
+		facing_right = false
 		animated_sprite.flip_h = true
 
 func _slash():

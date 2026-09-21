@@ -28,8 +28,8 @@ var is_wall_jumping: bool = false
 
 @export var m1_timer: Timer
 @export var animated_sprite: AnimatedSprite2D
-@onready var left_raycast: RayCast2D = $Node2D/RayCast2D
-@onready var right_raycast: RayCast2D = $Node2D/RayCast2D2
+@onready var left_raycast: RayCast2D = $Node2D/LeftRayCast2D
+@onready var right_raycast: RayCast2D = $Node2D/RightRayCast2D
 
 func _ready():
 	pass
@@ -104,7 +104,7 @@ func _dash():
 func _dash_cooldown():
 	if is_dashing == true:
 		dash_key_pressed = 1
-		await get_tree().create_timer(0.3).timeout
+		await get_tree().create_timer(0.2).timeout
 		is_dashing = false
 		dash_key_pressed = 0
 	else:

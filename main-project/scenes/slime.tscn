@@ -1,13 +1,25 @@
 [gd_scene format=3 uid="uid://negvm0jc0fgc"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_srws1"]
-radius = 21.095022
+[ext_resource type="Texture2D" uid="uid://43t2tvjg73f0" path="res://assets/animations/slime_enemies/weaker_slime_enemy.png" id="1_371uh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_p2gj0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_371uh"]
+size = Vector2(52, 24)
 
 [node name="Node2D" type="Node2D" unique_id=1977640895]
+scale = Vector2(0.62173545, 0.6103591)
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1583527975]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=794722032]
+sprite_frames = SubResource("SpriteFrames_p2gj0")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1464224632]
-shape = SubResource("CircleShape2D_srws1")
+[node name="WeakerSlimeEnemy" type="Sprite2D" parent="AnimatedSprite2D" unique_id=782349988]
+position = Vector2(5, -219.99998)
+scale = Vector2(1.99, 2.28)
+texture = ExtResource("1_371uh")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1290741525]
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=1583527975]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=1464224632]
+position = Vector2(1, -2)
+shape = SubResource("RectangleShape2D_371uh")

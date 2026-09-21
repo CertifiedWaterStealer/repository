@@ -152,7 +152,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ej7"]
-size = Vector2(119.000015, 117.5)
+size = Vector2(119.000015, 229.80988)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1ej7"]
 radius = 49.0
@@ -168,21 +168,23 @@ animated_sprite = NodePath("AnimatedSprite2D")
 position = Vector2(0, -527)
 scale = Vector2(7.456249, 6.8375006)
 sprite_frames = SubResource("SpriteFrames_ke2ow")
-animation = &"walk"
+animation = &"slash"
 
 [node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=1293322132]
 scale = Vector2(0.99999994, 1)
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=537626563]
-position = Vector2(22.799667, 77.07494)
+[node name="sword_collision" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=537626563]
+position = Vector2(23.872593, 77.07494)
 scale = Vector2(0.18273185, 0.18264839)
 shape = SubResource("RectangleShape2D_f1ej7")
+debug_color = Color(0.94880944, 0.22912201, 7.70092e-07, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1497009577]
 shape = SubResource("CapsuleShape2D_f1ej7")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1461916160]
 zoom = Vector2(2.5, 2.5)
+position_smoothing_speed = 20.0
 
 [node name="Node2D" type="Node2D" parent="." unique_id=1331992385]
 

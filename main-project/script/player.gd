@@ -1,12 +1,10 @@
 extends CharacterBody2D
 
-var is_attacking: bool = false
-
 var dash_cooldown_timer_is_ready: bool = true 
 
 var movement = Vector2()
 
-const SPEED = 300.0
+const SPEED = 200.0
 const SPRINT_SPEED: float = 400.0
 const WALK_SPEED: float = 300.0
 
@@ -26,13 +24,16 @@ var wall_jump_force_x = 200.0
 var wall_jump_force_y = -200.0
 var is_wall_jumping: bool = false
 
+var is_attacking: bool = false
+
 @export var m1_timer: Timer
 @export var animated_sprite: AnimatedSprite2D
+
 @onready var left_raycast: RayCast2D = $Node2D/LeftRayCast2D
 @onready var right_raycast: RayCast2D = $Node2D/RightRayCast2D
 
 func _ready():
-	pass
+	$AnimatedSprite2D/Area2D/sword_collision.disabled = true
 
 # This runs repeatidly, handling the physics and physics related functions. 'delta' 
 # is the time since the previous frame. I multiply my 'GRAVITY' constant with my 
@@ -64,7 +65,7 @@ func _horizontal_movement():
 		dash_key_pressed = 1
 		_dash()
 
-	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")) and not is_attacking:
+	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")):
 		_slash()
 
 # Handles the character's jump. This first section checks if the player is on the floor.
@@ -131,16 +132,28 @@ func _inputting_wall_jump():
 	await get_tree().create_timer(0.2).timeout
 	is_wall_jumping = false
 
+func _slash():
+	if Input.is_action_just_pressed("e_key"):
+		is_attacking = true
+		$AnimatedSprite2D/Area2D/sword_collision.disabled = false
+
+func _on_animated_sprite_2d_animation_finished() -> void:
+	is_attacking = false
+	$AnimatedSprite2D/Area2D/sword_collision.disabled = true
+
 # Made to play the animation when the player's 'velocity.x' is not equal to zero, or
 # when the velocity is equal to zero. Fror 'velocity.x' the numbers are oppisite to
 # 'velocity.y'.  
 func _animations():
-	# Basically means if the player is moving, play the 'walk' animation.
-	if velocity.x != 0: 
-		animated_sprite.play("walk")
-	# Basically means when the player is standing still, the 'idle' animation will play. 
-	if velocity.x == 0:
-		animated_sprite.play("idle")
+	if is_attacking == false:
+		# Basically means if the player is moving, play the 'walk' animation.
+		if velocity.x != 0: 
+			animated_sprite.play("walk")
+		# Basically means when the player is standing still, the 'idle' animation will play. 
+		if velocity.x == 0:
+			animated_sprite.play("idle")
+	if is_attacking == true:
+		animated_sprite.play("slash")
 
 # This function decides whether or not to flip the character sprite, when the
 # 'velocity.x' is less than or more than 0.
@@ -150,21 +163,11 @@ func _animation_flip():
 	# animations are gonna be set to it facing the right. 
 	if velocity.x > 0:
 		facing_right = true
+		$AnimatedSprite2D/Area2D.scale.x = 1
 		animated_sprite.flip_h = false
 	# So if the player is moving to the left, the 'flip h' will be set to 'true'
 	# as a result flipping the character's sprite.
 	if velocity.x < 0:
 		facing_right = false
+		$AnimatedSprite2D/Area2D.scale.x = -1
 		animated_sprite.flip_h = true
-
-func _slash():
-	var overlapping_collision_shapes = $AnimatedSprite2D/Area2D.get_overlapping_areas()
-	for area in overlapping_collision_shapes:
-		var parent = area.get_parent()
-		parent.take_damage()
-	is_attacking = true
-	animated_sprite.play("slash")
-
-func _on_animated_sprite_2d_animation_finished() -> void:
-	if animated_sprite.animation == "slash":
-		is_attacking = false

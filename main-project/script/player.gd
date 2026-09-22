@@ -26,7 +26,6 @@ var is_wall_jumping: bool = false
 
 var is_attacking: bool = false
 
-@export var m1_timer: Timer
 @export var animated_sprite: AnimatedSprite2D
 
 @onready var left_raycast: RayCast2D = $Node2D/LeftRayCast2D
@@ -59,14 +58,17 @@ func _horizontal_movement():
 			velocity.x = movement * SPEED
 		else:
 			velocity.x = lerp(velocity.x, 0.0, 0.2)
-	
-	if Input.is_action_just_pressed("q_key") and dash_key_pressed == 0 and total_dashes >= 1:
-		total_dashes -= 1
-		dash_key_pressed = 1
-		_dash()
-
-	if (Input.is_action_just_pressed("e_key") or Input.is_action_just_pressed("m1")):
+	if is_attacking == false:
+		if Input.is_action_just_pressed("q_key") and dash_key_pressed == 0 and total_dashes >= 1:
+			total_dashes -= 1
+			dash_key_pressed = 1
+			_dash()
+	if is_attacking == true:
+		pass
+		
+	if Input.is_action_just_pressed("e_key"):
 		_slash()
+		
 
 # Handles the character's jump. This first section checks if the player is on the floor.
 # If they are, then the player is capable of jumping. 

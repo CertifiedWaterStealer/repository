@@ -133,7 +133,6 @@ func _inputting_wall_jump():
 	is_wall_jumping = false
 
 func _slash():
-	if Input.is_action_just_pressed("e_key"):
 		is_attacking = true
 		$AnimatedSprite2D/Area2D/sword_collision.disabled = false
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2jjf5rv4quuj"
-path="res://.godot/imported/temple_tilemape.png-a1b671b19a1aa09948e7021cb568b78c.ctex"
+uid="uid://nnv44u0pqptr"
+path="res://.godot/imported/level_1_green_temple.png-55086655e212626c958d66a517aff0c4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilemap/temple_tilemape.png"
-dest_files=["res://.godot/imported/temple_tilemape.png-a1b671b19a1aa09948e7021cb568b78c.ctex"]
+source_file="res://assets/tilemap/level_1_green_temple.png"
+dest_files=["res://.godot/imported/level_1_green_temple.png-55086655e212626c958d66a517aff0c4.ctex"]
 
 [params]
 

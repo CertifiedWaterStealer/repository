@@ -152,11 +152,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ej7"]
-size = Vector2(119.000015, 229.80988)
+size = Vector2(119.000015, 247.02559)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_f1ej7"]
-radius = 49.0
-height = 304.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pf23h"]
+size = Vector2(124, 309)
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=188757502 node_paths=PackedStringArray("animated_sprite")]
 z_index = 3
@@ -170,17 +169,18 @@ scale = Vector2(7.456249, 6.8375006)
 sprite_frames = SubResource("SpriteFrames_ke2ow")
 animation = &"slash"
 
-[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=1293322132]
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D" unique_id=1293322132 groups=["Sword"]]
 scale = Vector2(0.99999994, 1)
 
 [node name="sword_collision" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=537626563]
-position = Vector2(23.872593, 77.07494)
+position = Vector2(23.872591, 78.64716)
 scale = Vector2(0.18273185, 0.18264839)
 shape = SubResource("RectangleShape2D_f1ej7")
 debug_color = Color(0.94880944, 0.22912201, 7.70092e-07, 0.41960785)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1497009577]
-shape = SubResource("CapsuleShape2D_f1ej7")
+position = Vector2(-10, 11.5)
+shape = SubResource("RectangleShape2D_pf23h")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1461916160]
 zoom = Vector2(2.5, 2.5)

@@ -53,11 +53,11 @@ func _physics_process(delta: float) -> void:
 func _horizontal_movement():
 	if is_wall_jumping == false and is_dashing == false:
 		movement = Input.get_axis("a_key", "d_key")
-		
 		if movement:
 			velocity.x = movement * SPEED
 		else:
 			velocity.x = lerp(velocity.x, 0.0, 0.2)
+
 	if is_attacking == false:
 		if Input.is_action_just_pressed("q_key") and dash_key_pressed == 0 and total_dashes >= 1:
 			total_dashes -= 1
@@ -68,7 +68,7 @@ func _horizontal_movement():
 		
 	if Input.is_action_just_pressed("e_key"):
 		_slash()
-		
+
 
 # Handles the character's jump. This first section checks if the player is on the floor.
 # If they are, then the player is capable of jumping. 

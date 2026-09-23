@@ -29,11 +29,14 @@ var is_wall_jumping: bool = false
 var is_attacking: bool = false
 
 @export var animated_sprite: AnimatedSprite2D
+@export var health_ui: ProgressBar
 
 @onready var left_raycast: RayCast2D = $Node2D/LeftRayCast2D
 @onready var right_raycast: RayCast2D = $Node2D/RightRayCast2D
 
 func _ready():
+	health_ui.value = health
+	health_ui.max_value = health
 	$AnimatedSprite2D/Area2D/sword_collision.disabled = true
 
 # This runs repeatidly, handling the physics and physics related functions. 'delta' 
@@ -70,7 +73,6 @@ func _horizontal_movement():
 		
 	if Input.is_action_just_pressed("e_key"):
 		_slash()
-
 
 # Handles the character's jump. This first section checks if the player is on the floor.
 # If they are, then the player is capable of jumping. 
@@ -144,10 +146,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	is_attacking = false
 	$AnimatedSprite2D/Area2D/sword_collision.disabled = true
 
-func _take_damage(damage: int):
-	health -= damage
-	if health < 0:
-		health = 0
+func _take_damage():
+	health -= 1
+	health_ui.value = health
 
 # Made to play the animation when the player's 'velocity.x' is not equal to zero, or
 # when the velocity is equal to zero. Fror 'velocity.x' the numbers are oppisite to

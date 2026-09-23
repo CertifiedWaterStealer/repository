@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxmr3tml0ewvt"
-path="res://.godot/imported/frame0003.png-c85affdfe149bc2584ab2810aff0099e.ctex"
+uid="uid://dgeh2r08nadmf"
+path="res://.godot/imported/health_bar_4.png-e6b9195052cc52bf3ddb617aeb8d3774.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animations/main_character/main_character_walk_and_sprint/frame0003.png"
-dest_files=["res://.godot/imported/frame0003.png-c85affdfe149bc2584ab2810aff0099e.ctex"]
+source_file="res://assets/sprites/health_sprites/health_bar_4.png"
+dest_files=["res://.godot/imported/health_bar_4.png-e6b9195052cc52bf3ddb617aeb8d3774.ctex"]
 
 [params]
 

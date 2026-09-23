@@ -34,10 +34,11 @@ animation = &"sliding"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=931832078]
 shape = SubResource("RectangleShape2D_n6pvg")
 
-[node name="HitBox" type="Area2D" parent="." unique_id=342839988]
+[node name="HitBox" type="Area2D" parent="." unique_id=342839988 groups=["Player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1294928638]
 shape = SubResource("RectangleShape2D_p2gj0")
 debug_color = Color(0.9938292, 0, 0.23865655, 0.41960785)
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

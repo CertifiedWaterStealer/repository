@@ -142,6 +142,9 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	is_attacking = false
 	$AnimatedSprite2D/Area2D/sword_collision.disabled = true
 
+func _take_damage():
+	pass
+
 # Made to play the animation when the player's 'velocity.x' is not equal to zero, or
 # when the velocity is equal to zero. Fror 'velocity.x' the numbers are oppisite to
 # 'velocity.y'.  

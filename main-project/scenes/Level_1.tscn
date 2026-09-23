@@ -1,9 +1,14 @@
 [gd_scene format=4 uid="uid://cwy5svrfcude5"]
 
 [ext_resource type="PackedScene" uid="uid://dilf4hpvg5ff8" path="res://scenes/player.tscn" id="1_014kd"]
-[ext_resource type="Texture2D" uid="uid://nnv44u0pqptr" path="res://assets/tilemap/level_1_green_temple.png" id="2_5xbjy"]
-[ext_resource type="Script" uid="uid://k082ic8uca4r" path="res://scenes/path_follow_2d.gd" id="3_5xbjy"]
+[ext_resource type="Texture2D" uid="uid://c3gudpc3ynmwa" path="res://assets/tilemap/level_1_green_temple.png" id="2_5xbjy"]
+[ext_resource type="Script" uid="uid://k082ic8uca4r" path="res://script/path_follow_2d.gd" id="3_5xbjy"]
 [ext_resource type="PackedScene" uid="uid://cnyx5oqk8qalb" path="res://scenes/slime.tscn" id="3_rus8k"]
+[ext_resource type="Script" uid="uid://ch25k08i2ol3s" path="res://script/gui.gd" id="5_4nkto"]
+[ext_resource type="Texture2D" uid="uid://bn7a8j84onequ" path="res://assets/sprites/health_sprites/health_bar_1.png" id="6_e3sih"]
+[ext_resource type="Texture2D" uid="uid://0xqigxkrrnw4" path="res://assets/sprites/health_sprites/health_bar_2.png" id="7_2y5yt"]
+[ext_resource type="Texture2D" uid="uid://dfp0ocb15ytfk" path="res://assets/sprites/health_sprites/health_bar_3.png" id="8_2os1m"]
+[ext_resource type="Texture2D" uid="uid://dgeh2r08nadmf" path="res://assets/sprites/health_sprites/health_bar_4.png" id="9_go7sj"]
 
 [sub_resource type="Environment" id="Environment_rf3rd"]
 background_mode = 3
@@ -163,6 +168,47 @@ _data = {
 }
 point_count = 6
 
+[sub_resource type="Curve2D" id="Curve2D_5xbjy"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -269.20673, -51.68698, 0, 0, 0, 0, -165.51227, -51.68698, 0, 0, 0, 0, -269.20673, -51.68698)
+}
+point_count = 3
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fcfvj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_e3sih")
+}],
+"loop": true,
+"name": &"health_bar_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_2y5yt")
+}],
+"loop": true,
+"name": &"health_bar_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_2os1m")
+}],
+"loop": true,
+"name": &"health_bar_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_go7sj")
+}],
+"loop": true,
+"name": &"health_bar_4",
+"speed": 5.0
+}]
+
 [node name="Node2D" type="Node2D" unique_id=1521934313]
 process_mode = 3
 
@@ -206,3 +252,22 @@ rotation = -3.1415925
 script = ExtResource("3_5xbjy")
 
 [node name="CharacterBody2D" parent="Enemies/EnemyPath/Path2D/PathFollow2D" unique_id=1692322594 instance=ExtResource("3_rus8k")]
+
+[node name="Path2D2" type="Path2D" parent="Enemies/EnemyPath" unique_id=405825397]
+curve = SubResource("Curve2D_5xbjy")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/EnemyPath/Path2D2" unique_id=11592605]
+position = Vector2(-269.20673, -51.68698)
+script = ExtResource("3_5xbjy")
+
+[node name="CharacterBody2D" parent="Enemies/EnemyPath/Path2D2/PathFollow2D" unique_id=39748177 instance=ExtResource("3_rus8k")]
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=1413169010 node_paths=PackedStringArray("animated_sprite")]
+script = ExtResource("5_4nkto")
+animated_sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="GUI" unique_id=669598452]
+position = Vector2(247.5, 227.5)
+scale = Vector2(2.475, 2.2749999)
+sprite_frames = SubResource("SpriteFrames_fcfvj")
+animation = &"health_bar_1"

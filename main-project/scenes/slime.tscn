@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cnyx5oqk8qalb"]
 
-[ext_resource type="Texture2D" uid="uid://43t2tvjg73f0" path="res://assets/animations/slime_enemies/weaker_slime_enemy.png" id="1_371uh"]
+[ext_resource type="Texture2D" uid="uid://hmbhdi337ewg" path="res://assets/animations/slime_enemies/weaker_slime_enemy.png" id="1_371uh"]
 [ext_resource type="Script" uid="uid://b8x8qs4jcarbo" path="res://script/slime.gd" id="1_p2gj0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_371uh"]

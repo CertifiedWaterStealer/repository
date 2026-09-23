@@ -4,7 +4,7 @@ var dash_cooldown_timer_is_ready: bool = true
 
 var movement = Vector2()
 
-var health = 10
+var health: int = 10
 
 const SPEED = 200.0
 const SPRINT_SPEED: float = 400.0
@@ -144,8 +144,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	is_attacking = false
 	$AnimatedSprite2D/Area2D/sword_collision.disabled = true
 
-func _take_damage():
-	health -= 2
+func _take_damage(damage: int):
+	health -= damage
+	if health < 0:
+		health = 0
 
 # Made to play the animation when the player's 'velocity.x' is not equal to zero, or
 # when the velocity is equal to zero. Fror 'velocity.x' the numbers are oppisite to

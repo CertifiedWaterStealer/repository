@@ -169,12 +169,6 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xbjy"]
-bg_color = Color(0.973702, 0, 0.26950198, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nkto"]
-bg_color = Color(0.7887845, 0.54551077, 0.14789626, 1)
-
 [node name="Node2D" type="Node2D" unique_id=1521934313]
 process_mode = 3
 
@@ -227,16 +221,3 @@ position = Vector2(-269.20673, -51.68698)
 script = ExtResource("3_5xbjy")
 
 [node name="CharacterBody2D" parent="Enemies/EnemyPath/Path2D2/PathFollow2D" unique_id=39748177 instance=ExtResource("3_rus8k")]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=633862342]
-
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1394506119]
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 264.0
-offset_bottom = 35.0
-theme_override_styles/background = SubResource("StyleBoxFlat_5xbjy")
-theme_override_styles/fill = SubResource("StyleBoxFlat_4nkto")
-max_value = 10.0
-value = 10.0
-show_percentage = false

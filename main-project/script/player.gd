@@ -4,6 +4,8 @@ var dash_cooldown_timer_is_ready: bool = true
 
 var movement = Vector2()
 
+var can_slash: bool = true
+
 var health: int = 10
 
 const SPEED = 200.0
@@ -71,7 +73,9 @@ func _horizontal_movement():
 	if is_attacking == true:
 		pass
 		
-	if Input.is_action_just_pressed("e_key"):
+	if Input.is_action_just_pressed("f_key") and can_slash == true:
+		can_slash = false
+		$Timer.start()
 		_slash()
 
 # Handles the character's jump. This first section checks if the player is on the floor.
@@ -100,7 +104,6 @@ func _dash():
 		is_dashing = true
 	else:
 		is_dashing = false
-	
 	if facing_right:
 		velocity.x = DASH_SPEED
 		_dash_cooldown()
@@ -139,16 +142,23 @@ func _inputting_wall_jump():
 	is_wall_jumping = false
 
 func _slash():
-		is_attacking = true
-		$AnimatedSprite2D/Area2D/sword_collision.disabled = false
+	is_attacking = true
+	$AnimatedSprite2D/Area2D/sword_collision.disabled = false
+
+func _slash_cooldown() -> void:
+	can_slash = true
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	is_attacking = false
 	$AnimatedSprite2D/Area2D/sword_collision.disabled = true
 
 func _take_damage():
-	health -= 1
+	health -= 2
 	health_ui.value = health
+	if health <= 0:
+		health = 0
+	if health == 0:
+		get_tree().call_deferred("reload_current_scene")
 
 # Made to play the animation when the player's 'velocity.x' is not equal to zero, or
 # when the velocity is equal to zero. Fror 'velocity.x' the numbers are oppisite to

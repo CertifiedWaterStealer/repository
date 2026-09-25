@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c3gudpc3ynmwa" path="res://assets/tilemap/level_1_green_temple.png" id="2_5xbjy"]
 [ext_resource type="Script" uid="uid://k082ic8uca4r" path="res://script/path_follow_2d.gd" id="3_5xbjy"]
 [ext_resource type="PackedScene" uid="uid://cnyx5oqk8qalb" path="res://scenes/slime.tscn" id="3_rus8k"]
+[ext_resource type="PackedScene" uid="uid://b2civc8rspf8m" path="res://scenes/gemstones/amethyest.tscn" id="5_4nkto"]
 
 [sub_resource type="Environment" id="Environment_rf3rd"]
 background_mode = 3
@@ -185,7 +186,7 @@ environment = SubResource("Environment_rf3rd")
 process_mode = 1
 position = Vector2(40, 625)
 scale = Vector2(0.096670724, 0.09918817)
-health_ui = NodePath("../CanvaLayer/HealthBar")
+health_ui = NodePath("../GUI/HealthBar")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=724746420]
 
@@ -229,9 +230,9 @@ script = ExtResource("3_5xbjy")
 
 [node name="CharacterBody2D" parent="Enemies/EnemyPath/Path2D2/PathFollow2D" unique_id=39748177 instance=ExtResource("3_rus8k")]
 
-[node name="CanvaLayer" type="CanvasLayer" parent="." unique_id=633862342]
+[node name="GUI" type="CanvasLayer" parent="." unique_id=633862342]
 
-[node name="HealthBar" type="ProgressBar" parent="CanvaLayer" unique_id=1394506119]
+[node name="HealthBar" type="ProgressBar" parent="GUI" unique_id=1394506119]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 264.0
@@ -242,3 +243,8 @@ max_value = 10.0
 step = 1.0
 value = 5.0
 show_percentage = false
+
+[node name="Items" type="Node2D" parent="." unique_id=1970873499]
+
+[node name="InteractionArea" parent="Items" unique_id=1556374768 instance=ExtResource("5_4nkto")]
+position = Vector2(352, 616)

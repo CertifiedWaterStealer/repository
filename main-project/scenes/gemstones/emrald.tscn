@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://civj2646r3mjg"]
+
+[ext_resource type="Script" uid="uid://ytqa38idorru" path="res://script/gemstones/emrald.gd" id="1_3jgl0"]
+[ext_resource type="Texture2D" uid="uid://rrhg5c4pmcha" path="res://assets/sprites/gemstones/gemstone_emrald.png" id="2_3jgl0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3jgl0"]
+size = Vector2(20, 17)
+
+[node name="InteractionArea" type="Area2D" unique_id=1556374768]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_3jgl0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320305435]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_3jgl0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=976790329]
+texture = ExtResource("2_3jgl0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

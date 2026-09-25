@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://npbvaws10aer"]
+
+[ext_resource type="Script" uid="uid://ddnkaa7kj43ix" path="res://script/gemstones/diamond.gd" id="1_5f77b"]
+[ext_resource type="Texture2D" uid="uid://m1uhcqgfy3nd" path="res://assets/sprites/gemstones/gemstone_diamond.png" id="2_5f77b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5f77b"]
+
+[node name="InteractionArea" type="Area2D" unique_id=1556374768]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_5f77b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320305435]
+position = Vector2(0, 5)
+shape = SubResource("RectangleShape2D_5f77b")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=976790329]
+texture = ExtResource("2_5f77b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

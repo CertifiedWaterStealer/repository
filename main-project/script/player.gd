@@ -73,7 +73,7 @@ func _horizontal_movement():
 	if is_attacking == true:
 		pass
 		
-	if Input.is_action_just_pressed("f_key") and can_slash == true:
+	if (Input.is_action_just_pressed("f_key") or Input.is_action_just_pressed("m1")) and can_slash == true:
 		can_slash = false
 		$Timer.start()
 		_slash()

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b2civc8rspf8m"]
+
+[ext_resource type="Script" uid="uid://cc7p5ax2fk8d7" path="res://script/gemstones/amethyest.gd" id="1_8pw3t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ks0q6"]
+size = Vector2(20, 18)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ks0q6"]
+load_path = "res://.godot/imported/gemstone_amethyest.png-e14e5388078bcb1413d3965880629212.ctex"
+
+[node name="InteractionArea" type="Area2D" unique_id=1556374768]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_8pw3t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1320305435]
+position = Vector2(-4, 3)
+shape = SubResource("RectangleShape2D_ks0q6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=976790329]
+texture = SubResource("CompressedTexture2D_ks0q6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

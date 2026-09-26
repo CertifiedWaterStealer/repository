@@ -35,6 +35,7 @@ var is_attacking: bool = false
 
 @onready var left_raycast: RayCast2D = $Node2D/LeftRayCast2D
 @onready var right_raycast: RayCast2D = $Node2D/RightRayCast2D
+@onready var main = $".."
 
 func _ready():
 	health_ui.value = health

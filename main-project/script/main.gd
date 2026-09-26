@@ -1,5 +1,8 @@
 extends Node2D
 
+var gems_counter = 0
+var money_score = 0
+
 @onready var pause_menu = $GUI/PauseMenu
 
 var paused = false
@@ -11,6 +14,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	$GUI/GemCounter.text = str(gems_counter)
+	$GUI/MoneyScore.text = str(money_score)
 	if Input.is_action_just_pressed("esc"):
 		_pause_menu()
 

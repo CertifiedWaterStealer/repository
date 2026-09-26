@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://e4uls536hiyp"]
 
-[ext_resource type="Script" uid="uid://cddkur0d286ud" path="res://script/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://cddkur0d286ud" path="res://script/menus/main_menu.gd" id="1_xqga4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vue75"]
 bg_color = Color(0.4563194, 0.6988642, 0.4036974, 1)
@@ -108,7 +108,7 @@ anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 825.2515
 scale = Vector2(1.0046675, 0.7827813)
-script = ExtResource("1_l6cm7")
+script = ExtResource("1_xqga4")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1736332193]
 layout_mode = 0

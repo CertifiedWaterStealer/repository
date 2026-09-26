@@ -3,33 +3,28 @@
 [ext_resource type="Texture2D" uid="uid://hmbhdi337ewg" path="res://assets/animations/slime_enemies/weaker_slime_enemy.png" id="1_371uh"]
 [ext_resource type="Script" uid="uid://b8x8qs4jcarbo" path="res://script/slime.gd" id="1_p2gj0"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_371uh"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_371uh")
-}],
-"loop": true,
-"name": &"sliding",
-"speed": 5.0
-}]
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6pvg"]
 size = Vector2(27, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p2gj0"]
 size = Vector2(32, 20)
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1692322594 node_paths=PackedStringArray("animated_sprite")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2gj0"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6pvg"]
+bg_color = Color(0, 0.627451, 0, 1)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1692322594 node_paths=PackedStringArray("sprite", "health_ui")]
 z_index = 3
 script = ExtResource("1_p2gj0")
-animated_sprite = NodePath("AnimatedSprite2D")
+sprite = NodePath("Sprite2D")
+health_ui = NodePath("ProgressBar")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1944706204]
-position = Vector2(2, -96)
-scale = Vector2(0.98, 1)
-sprite_frames = SubResource("SpriteFrames_371uh")
-animation = &"sliding"
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=381913003]
+position = Vector2(3, -191)
+scale = Vector2(1.3922224, 1.9921886)
+texture = ExtResource("1_371uh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=931832078]
 position = Vector2(-0.5, 0)
@@ -42,6 +37,20 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1294928638]
 shape = SubResource("RectangleShape2D_p2gj0")
 debug_color = Color(0.9938292, 0, 0.23865655, 0.41960785)
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1983452739]
+visible = false
+offset_left = -16.0
+offset_top = -20.000002
+offset_right = 34.0
+offset_bottom = 6.999998
+scale = Vector2(0.6282834, 0.27999967)
+theme_override_styles/background = SubResource("StyleBoxFlat_p2gj0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_n6pvg")
+max_value = 3.0
+step = 1.0
+value = 1.0
+show_percentage = false
 
 [connection signal="area_entered" from="HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]

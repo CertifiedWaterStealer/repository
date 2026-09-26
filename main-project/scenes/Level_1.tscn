@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://k082ic8uca4r" path="res://script/path_follow_2d.gd" id="3_5xbjy"]
 [ext_resource type="PackedScene" uid="uid://cnyx5oqk8qalb" path="res://scenes/slime.tscn" id="3_rus8k"]
 [ext_resource type="PackedScene" uid="uid://b2civc8rspf8m" path="res://scenes/gemstones/amethyest.tscn" id="5_4nkto"]
+[ext_resource type="PackedScene" uid="uid://npbvaws10aer" path="res://scenes/gemstones/diamond.tscn" id="6_pa8r4"]
+[ext_resource type="PackedScene" uid="uid://civj2646r3mjg" path="res://scenes/gemstones/emrald.tscn" id="7_15mv3"]
 
 [sub_resource type="Environment" id="Environment_rf3rd"]
 background_mode = 3
@@ -247,4 +249,10 @@ show_percentage = false
 [node name="Items" type="Node2D" parent="." unique_id=1970873499]
 
 [node name="InteractionArea" parent="Items" unique_id=1556374768 instance=ExtResource("5_4nkto")]
-position = Vector2(352, 616)
+position = Vector2(336, 600)
+
+[node name="InteractionArea2" parent="Items" unique_id=1107848953 instance=ExtResource("6_pa8r4")]
+position = Vector2(832, 440)
+
+[node name="InteractionArea3" parent="Items" unique_id=52130330 instance=ExtResource("7_15mv3")]
+position = Vector2(528, 496)

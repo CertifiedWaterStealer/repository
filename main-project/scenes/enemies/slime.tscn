@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cnyx5oqk8qalb"]
 
 [ext_resource type="Texture2D" uid="uid://hmbhdi337ewg" path="res://assets/animations/slime_enemies/weaker_slime_enemy.png" id="1_371uh"]
-[ext_resource type="Script" uid="uid://b8x8qs4jcarbo" path="res://script/slime.gd" id="1_p2gj0"]
+[ext_resource type="Script" uid="uid://b8x8qs4jcarbo" path="res://script/enemies/slime.gd" id="1_p2gj0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n6pvg"]
 size = Vector2(27, 20)

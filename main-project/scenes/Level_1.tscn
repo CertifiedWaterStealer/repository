@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bxxn6ybeawcm5" path="res://script/main.gd" id="1_15mv3"]
 [ext_resource type="Texture2D" uid="uid://c3gudpc3ynmwa" path="res://assets/tilemap/level_1_green_temple.png" id="2_5xbjy"]
 [ext_resource type="Script" uid="uid://k082ic8uca4r" path="res://script/path_follow_2d.gd" id="3_5xbjy"]
-[ext_resource type="PackedScene" uid="uid://cnyx5oqk8qalb" path="res://scenes/slime.tscn" id="3_rus8k"]
+[ext_resource type="PackedScene" uid="uid://cnyx5oqk8qalb" path="res://scenes/enemies/slime.tscn" id="3_rus8k"]
 [ext_resource type="PackedScene" uid="uid://b2civc8rspf8m" path="res://scenes/gemstones/amethyest.tscn" id="5_4nkto"]
 [ext_resource type="PackedScene" uid="uid://cpwsr7i1frs40" path="res://scenes/menus/pause_menu.tscn" id="6_e3sih"]
 [ext_resource type="PackedScene" uid="uid://npbvaws10aer" path="res://scenes/gemstones/diamond.tscn" id="6_pa8r4"]
@@ -306,15 +306,18 @@ scale = Vector2(1.8499998, 1.8500001)
 sprite_frames = SubResource("SpriteFrames_6dial")
 animation = &"gem_counter_animation"
 autoplay = "gem_counter_animation"
-frame_progress = 0.92634284
+frame_progress = 0.7286906
 
 [node name="Items" type="Node2D" parent="." unique_id=1970873499]
 
 [node name="InteractionArea" parent="Items" unique_id=1556374768 instance=ExtResource("5_4nkto")]
+z_index = 3
 position = Vector2(336, 600)
 
 [node name="InteractionArea2" parent="Items" unique_id=1107848953 instance=ExtResource("6_pa8r4")]
+z_index = 3
 position = Vector2(832, 440)
 
 [node name="InteractionArea3" parent="Items" unique_id=52130330 instance=ExtResource("7_15mv3")]
+z_index = 3
 position = Vector2(528, 496)

@@ -1,10 +1,12 @@
 [gd_scene format=4 uid="uid://cwy5svrfcude5"]
 
 [ext_resource type="PackedScene" uid="uid://dilf4hpvg5ff8" path="res://scenes/player.tscn" id="1_014kd"]
+[ext_resource type="Script" uid="uid://bxxn6ybeawcm5" path="res://script/main.gd" id="1_15mv3"]
 [ext_resource type="Texture2D" uid="uid://c3gudpc3ynmwa" path="res://assets/tilemap/level_1_green_temple.png" id="2_5xbjy"]
 [ext_resource type="Script" uid="uid://k082ic8uca4r" path="res://script/path_follow_2d.gd" id="3_5xbjy"]
 [ext_resource type="PackedScene" uid="uid://cnyx5oqk8qalb" path="res://scenes/slime.tscn" id="3_rus8k"]
 [ext_resource type="PackedScene" uid="uid://b2civc8rspf8m" path="res://scenes/gemstones/amethyest.tscn" id="5_4nkto"]
+[ext_resource type="PackedScene" uid="uid://cpwsr7i1frs40" path="res://scenes/pause_menu.tscn" id="6_e3sih"]
 [ext_resource type="PackedScene" uid="uid://npbvaws10aer" path="res://scenes/gemstones/diamond.tscn" id="6_pa8r4"]
 [ext_resource type="PackedScene" uid="uid://civj2646r3mjg" path="res://scenes/gemstones/emrald.tscn" id="7_15mv3"]
 
@@ -178,8 +180,9 @@ bg_color = Color(0.973702, 0, 0.26950198, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4nkto"]
 bg_color = Color(0.7887845, 0.54551077, 0.14789626, 1)
 
-[node name="Node2D" type="Node2D" unique_id=1521934313]
+[node name="Main" type="Node2D" unique_id=1521934313]
 process_mode = 3
+script = ExtResource("1_15mv3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=63757592]
 environment = SubResource("Environment_rf3rd")
@@ -245,6 +248,9 @@ max_value = 10.0
 step = 1.0
 value = 5.0
 show_percentage = false
+
+[node name="PauseMenu" parent="GUI" unique_id=1848440783 instance=ExtResource("6_e3sih")]
+visible = false
 
 [node name="Items" type="Node2D" parent="." unique_id=1970873499]
 

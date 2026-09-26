@@ -15,6 +15,3 @@ func _play() -> void:
 	
 func _quit() -> void:
 	get_tree().quit()
-	
-func _option() -> void:
-	print("A WORK IN PROGRESS!!!")

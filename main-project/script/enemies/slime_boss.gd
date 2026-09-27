@@ -19,6 +19,9 @@ func _process(_delta: float) -> void:
 	if health <= 0:
 		queue_free()
 
+func _got_hit():
+	await get_tree().create_timer(2).timeout
+
 func _on_hit_box_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Sword"):
 		health -= 1 

@@ -275,9 +275,10 @@ script = ExtResource("3_5xbjy")
 curve = SubResource("Curve2D_2aecg")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Enemies/SlimeBossPath/Path2D" unique_id=948140729]
-position = Vector2(-2116.343, 815.0632)
+position = Vector2(-1960.0387, 876.164)
+rotation = -1.5180517
 scale = Vector2(1, 0.99999994)
-progress = 128.04045
+progress = 2112.6675
 script = ExtResource("6_2aecg")
 
 [node name="CharacterBody2D" parent="Enemies/SlimeBossPath/Path2D/PathFollow2D" unique_id=330813927 instance=ExtResource("6_7gny6")]

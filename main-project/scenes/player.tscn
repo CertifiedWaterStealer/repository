@@ -152,7 +152,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f1ej7"]
-size = Vector2(119.000015, 247.02559)
+size = Vector2(129.2251, 345.11508)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pf23h"]
 size = Vector2(124, 292)
@@ -175,7 +175,7 @@ animation = &"walk"
 scale = Vector2(0.99999994, 1)
 
 [node name="sword_collision" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D" unique_id=537626563]
-position = Vector2(23.872591, 78.64716)
+position = Vector2(24.806816, 77.14809)
 scale = Vector2(0.18273185, 0.18264839)
 shape = SubResource("RectangleShape2D_f1ej7")
 debug_color = Color(0.94880944, 0.22912201, 7.70092e-07, 0.41960785)

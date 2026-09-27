@@ -1,17 +1,16 @@
 extends Node2D
 
-var gems_counter = 0
+# The gems will first equal to 0
+var gems_counter: int = 0
 
-var money_score = 0
+# money equals to 0
+var money_score: int = 0
 
+# Once the game starts, get the pause menu and make it variable.
 @onready var pause_menu = $GUI/PauseMenu
 
-var paused = false
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
+# making the bool equal false first
+var paused: bool = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -20,6 +19,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("esc"):
 		_pause_menu()
 
+# changes the game time to pause and unpause it. 
 func _pause_menu():
 	if paused:
 		pause_menu.hide()

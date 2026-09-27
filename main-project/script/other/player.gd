@@ -1,42 +1,81 @@
 extends CharacterBody2D
 
+# Intially set to true 
 var dash_cooldown_timer_is_ready: bool = true 
 
+# Vector2 is stored in movement
 var movement = Vector2()
 
+# Intially set to true. 
 var can_slash: bool = true
 
+# Healht is a number and it's set to 10
 var health: int = 10
 
+# constantly set to 200.0 
 const SPEED = 200.0
+
+# Constantly set to 400.0
 const SPRINT_SPEED: float = 400.0
+
+# constantly set to 300.0
 const WALK_SPEED: float = 300.0
 
+# constantly set the 450.0
 const DASH_SPEED: float = 450.0
-var dash_key_pressed = 0
-var is_dashing = false 
-var facing_right = true
-var total_dashes = 1
 
+# A number that can go up or down stored in dahs key pressed.
+var dash_key_pressed: int = 0
+
+# Boolean set to false.
+var is_dashing = false
+ 
+# boolean set to true.
+var facing_right = true
+
+# The total amount the player can perform, holding an amount.
+var total_dashes: int = 1
+
+# constly set to 600.0.
 const GRAVITY: float = 600.0
 
+# constantly set to 170.0.
 const JUMP_SPEED: float = 170.0
+
+# Constantly set to 400.0.
 const JUMP_ACCELERATION: float = 400.0
+
+# Set to a total of 2 .
 var total_jumps: int = 2 
 
+# stored 200.0 .
 var wall_jump_force_x = 200.0
+
+# stored -200.0.
 var wall_jump_force_y = -200.0
+
+# intially equaling false.
 var is_wall_jumping: bool = false
 
+# made to equal false first. 
 var is_attacking: bool = false
 
+# connecting a node in a stored variable
 @export var animated_sprite: AnimatedSprite2D
+
+# connecting a node in a stored variable
 @export var health_ui: ProgressBar
 
+# once the game starts it finds the node and stores it.
 @onready var left_raycast: RayCast2D = $Node2D/LeftRayCast2D
+
+# once the game starts it finds the node and stores it.
 @onready var right_raycast: RayCast2D = $Node2D/RightRayCast2D
+
+# once the game starts it finds the node and stores it.
 @onready var main = $".."
 
+# When this start, find every node in player the "Player" group and store it into a variable.
 func _ready():
 	health_ui.value = health
 	health_ui.max_value = health
@@ -66,6 +105,8 @@ func _horizontal_movement():
 		else:
 			velocity.x = lerp(velocity.x, 0.0, 0.2)
 
+# checking multiple things then the player can use the dash function and if they are attcking
+# then they cannot.
 	if is_attacking == false:
 		if Input.is_action_just_pressed("q_key") and dash_key_pressed == 0 and total_dashes >= 1:
 			total_dashes -= 1
@@ -74,6 +115,7 @@ func _horizontal_movement():
 	if is_attacking == true:
 		pass
 		
+# Checking muliple things to see whether or not the player can run the attack func or not. 
 	if (Input.is_action_just_pressed("f_key") or Input.is_action_just_pressed("m1")) and can_slash == true:
 		can_slash = false
 		$Timer.start()
@@ -100,6 +142,9 @@ func _jump():
 	else:
 		return
 
+# Made to give the player the ability to move quickly in a short burst with cooldown funcs
+# being ran to give a cooldown, and different sotred variables to give the constant numbers
+#needed for this.
 func _dash():
 	if dash_key_pressed == 1:
 		is_dashing = true
@@ -112,6 +157,8 @@ func _dash():
 		velocity.x = -DASH_SPEED
 		_dash_cooldown()
 
+# func providing the cooldown so the player cannot spam it constantly by using a timer and boolean.
+# and then returning it to check again. 
 func _dash_cooldown():
 	if is_dashing == true:
 		dash_key_pressed = 1
@@ -137,22 +184,29 @@ func _wall_slide():
 				velocity = Vector2(-wall_jump_force_x, wall_jump_force_y)
 				_inputting_wall_jump()
 
+# Adding a cooldown so the player cannot spam the button.
 func _inputting_wall_jump():
 	is_wall_jumping = true
 	await get_tree().create_timer(0.2).timeout
 	is_wall_jumping = false
 
+# plays the animation for the attack, with boolean checking if they can or not. 
 func _slash():
 	is_attacking = true
 	$AnimatedSprite2D/Area2D/sword_collision.disabled = false
 
+# a cooldown to stop the player from spamming with boolean to reassure things.
 func _slash_cooldown() -> void:
 	can_slash = true
 
+# Once the slash animation is finished then the hit box will equal to false and the boolean it 
+# set to false.
 func _on_animated_sprite_2d_animation_finished() -> void:
 	is_attacking = false
 	$AnimatedSprite2D/Area2D/sword_collision.disabled = true
 
+# Called by the enemies script and used to damage player and reset when after the health
+# hits zero.
 func _take_damage():
 	health -= 2
 	health_ui.value = health

@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dg31t5a3whvyc"]
 
+[ext_resource type="Texture2D" uid="uid://bf1lvg7eb4yce" path="res://assets/sprites/enemies/slime_boss.png" id="1_q2r5q"]
+
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=330813927]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1876542271]
@@ -14,3 +16,8 @@
 visible = false
 offset_right = 4.0
 offset_bottom = 27.0
+
+[node name="SlimeBoss" type="Sprite2D" parent="." unique_id=988993861]
+position = Vector2(-20, -323)
+scale = Vector2(3.5099998, 3.8600001)
+texture = ExtResource("1_q2r5q")

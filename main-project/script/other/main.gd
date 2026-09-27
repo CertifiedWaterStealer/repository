@@ -6,11 +6,11 @@ var gems_counter: int = 0
 # money equals to 0
 var money_score: int = 0
 
-# Once the game starts, get the pause menu and make it variable.
-@onready var pause_menu = $GUI/PauseMenu
-
 # making the bool equal false first
 var paused: bool = false
+
+# Once the game starts, get the pause menu and make it variable.
+@onready var pause_menu = $GUI/PauseMenu
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

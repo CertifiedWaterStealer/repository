@@ -7,7 +7,7 @@ var player: CharacterBody2D
 var can_interact: bool = false
 
 # Value will constantly equal 100 and not change.
-const value: int = 1000
+const VALUE: int = 1000
 
 # When the game starts, find the node and call it main.
 @onready var main = $"../.."
@@ -26,7 +26,7 @@ func _process(_delta: float) -> void:
 func _interact():
 	if Input.is_action_just_pressed("e_key") and can_interact == true:
 		main.gems_counter += 1
-		main.money_score += value
+		main.money_score += VALUE
 		queue_free()
 
 # Signal checking once a body has entered the area2d and is in player, the can interact boolean

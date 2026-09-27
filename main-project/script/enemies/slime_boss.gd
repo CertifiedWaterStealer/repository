@@ -36,7 +36,6 @@ func _on_hit_box_area_entered(area: Area2D) -> void:
 		health_ui.value = health
 		if not health_ui.visible:
 			health_ui.show()
-		print("sword worked")
 
 # if a body has entered, the signal will make the player take damage by calling the player's
 # script's take damage function. 
@@ -44,4 +43,3 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body == player:
 		player._take_damage()
 		overlapping = true
-		print("worked")

@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://k082ic8uca4r" path="res://script/path_follow_2d.gd" id="3_5xbjy"]
 [ext_resource type="PackedScene" uid="uid://cnyx5oqk8qalb" path="res://scenes/enemies/slime.tscn" id="3_rus8k"]
 [ext_resource type="PackedScene" uid="uid://b2civc8rspf8m" path="res://scenes/gemstones/amethyest.tscn" id="5_4nkto"]
+[ext_resource type="Script" uid="uid://00me0tqf3ah4" path="res://script/slime_boss_path_follow.gd" id="6_2aecg"]
+[ext_resource type="PackedScene" uid="uid://dg31t5a3whvyc" path="res://scenes/enemies/slime_boss.tscn" id="6_7gny6"]
 [ext_resource type="PackedScene" uid="uid://cpwsr7i1frs40" path="res://scenes/menus/pause_menu.tscn" id="6_e3sih"]
 [ext_resource type="PackedScene" uid="uid://npbvaws10aer" path="res://scenes/gemstones/diamond.tscn" id="6_pa8r4"]
 [ext_resource type="PackedScene" uid="uid://civj2646r3mjg" path="res://scenes/gemstones/emrald.tscn" id="7_15mv3"]
@@ -177,6 +179,12 @@ _data = {
 }
 point_count = 3
 
+[sub_resource type="Curve2D" id="Curve2D_2aecg"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -2244.3867, 815.0631, 0, 0, 0, 0, -2044.9742, 815.06323, 0, 0, 0, 0, -2044.9742, 950.2445, 0, 0, 0, 0, -2316.1748, 950.2444, 0, 0, 0, 0, -2308.1982, 815.0631, 0, 0, 0, 0, -2268.316, 815.0631, 0, 0, 0, 0, -2140.692, 695.78564, 0, 0, 0, 0, -2005.0917, 656.0265, 0, 0, 0, 0, -1853.5382, 703.73755, 0, 0, 0, 0, -1678.0553, 815.06323, 0, 0, 0, 0, -1622.2198, 823.01514, 0, 0, 0, 0, -1614.2433, 966.1482, 0, 0, 0, 0, -1965.2091, 974.1001, 0, 0, 0, 0, -1957.2328, 823.01514, 0, 0, 0, 0, -1630.1964, 823.01514, 0, 0, 0, 0, -1797.7028, 727.593, 0, 0, 0, 0, -1997.1151, 656.0265, 0, 0, 0, 0, -2140.692, 703.73755, 0, 0, 0, 0, -2244.3867, 815.0631)
+}
+point_count = 19
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xbjy"]
 bg_color = Color(0.973702, 0, 0.26950198, 1)
 
@@ -215,7 +223,7 @@ environment = SubResource("Environment_rf3rd")
 
 [node name="CharacterBody2D" parent="." unique_id=188757502 node_paths=PackedStringArray("health_ui") instance=ExtResource("1_014kd")]
 process_mode = 1
-position = Vector2(40, 625)
+position = Vector2(2487.9998, 1328)
 scale = Vector2(0.096670724, 0.09918817)
 health_ui = NodePath("../GUI/HealthBar")
 
@@ -240,26 +248,40 @@ position = Vector2(605, 508)
 rotation = -3.1415925
 scale = Vector2(1.0029467, -1.0060564)
 
-[node name="EnemyPath" type="Node2D" parent="Enemies" unique_id=1178098243]
+[node name="SlimePath" type="Node2D" parent="Enemies" unique_id=1178098243]
 
-[node name="Path2D" type="Path2D" parent="Enemies/EnemyPath" unique_id=817214978]
+[node name="Path2D" type="Path2D" parent="Enemies/SlimePath" unique_id=817214978]
 curve = SubResource("Curve2D_rus8k")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/EnemyPath/Path2D" unique_id=1224618831]
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/SlimePath/Path2D" unique_id=1224618831]
 position = Vector2(155.54166, -0.9939575)
 rotation = -3.1415925
 script = ExtResource("3_5xbjy")
 
-[node name="CharacterBody2D" parent="Enemies/EnemyPath/Path2D/PathFollow2D" unique_id=1692322594 instance=ExtResource("3_rus8k")]
+[node name="CharacterBody2D" parent="Enemies/SlimePath/Path2D/PathFollow2D" unique_id=1692322594 instance=ExtResource("3_rus8k")]
 
-[node name="Path2D2" type="Path2D" parent="Enemies/EnemyPath" unique_id=405825397]
+[node name="Path2D2" type="Path2D" parent="Enemies/SlimePath" unique_id=405825397]
 curve = SubResource("Curve2D_5xbjy")
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/EnemyPath/Path2D2" unique_id=11592605]
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/SlimePath/Path2D2" unique_id=11592605]
 position = Vector2(-269.20673, -51.68698)
 script = ExtResource("3_5xbjy")
 
-[node name="CharacterBody2D" parent="Enemies/EnemyPath/Path2D2/PathFollow2D" unique_id=39748177 instance=ExtResource("3_rus8k")]
+[node name="CharacterBody2D" parent="Enemies/SlimePath/Path2D2/PathFollow2D" unique_id=39748177 instance=ExtResource("3_rus8k")]
+
+[node name="SlimeBossPath" type="Node2D" parent="Enemies" unique_id=2027755055]
+
+[node name="Path2D" type="Path2D" parent="Enemies/SlimeBossPath" unique_id=1072355442]
+curve = SubResource("Curve2D_2aecg")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemies/SlimeBossPath/Path2D" unique_id=948140729]
+position = Vector2(-1669.4789, 816.2846)
+rotation = 0.14146547
+scale = Vector2(1, 0.99999994)
+progress = 1472.4652
+script = ExtResource("6_2aecg")
+
+[node name="CharacterBody2D" parent="Enemies/SlimeBossPath/Path2D/PathFollow2D" unique_id=330813927 instance=ExtResource("6_7gny6")]
 
 [node name="GUI" type="CanvasLayer" parent="." unique_id=633862342]
 

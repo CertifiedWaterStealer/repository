@@ -1,6 +1,7 @@
 extends Node2D
 
 var gems_counter = 0
+
 var money_score = 0
 
 @onready var pause_menu = $GUI/PauseMenu
